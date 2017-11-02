@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CardsTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) UIView *dividerLine;
 @end

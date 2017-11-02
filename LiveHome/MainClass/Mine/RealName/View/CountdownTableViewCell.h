@@ -16,6 +16,7 @@ typedef void(^countdownBlock)(void);
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, strong) UIButton *clearBtn;
+@property (nonatomic, strong) UIView *dividerLine;
 
 //是否展示倒计时控件
 - (void)countdownViewHidden:(BOOL)hidden;

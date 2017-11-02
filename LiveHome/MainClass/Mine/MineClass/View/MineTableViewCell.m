@@ -39,6 +39,16 @@
         make.centerY.equalTo(self.contentView);
     }];
     
+    _dividerLine = [[UIView alloc] init];
+    _dividerLine.backgroundColor = [UIColor bgColorLine];
+    [self.contentView addSubview:_dividerLine];
+    [_dividerLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_titleLabel);
+        make.right.equalTo(self.contentView);
+        make.bottom.equalTo(self.contentView);
+        make.height.mas_equalTo(1);
+    }];
+    
     UIImageView *arrowImageView = [[UIImageView alloc] init];
     arrowImageView.image = [UIImage imageNamed:@"arrow_10x18"];
     [self.contentView addSubview:arrowImageView];

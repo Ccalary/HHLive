@@ -64,6 +64,7 @@
     if (!cell) {
         cell = [[MineTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    cell.dividerLine.hidden = YES;
     cell.iconImageView.image = [UIImage imageNamed:self.imageArray[indexPath.section]];
     cell.titleLabel.text = self.dataArray[indexPath.section];
     return cell;

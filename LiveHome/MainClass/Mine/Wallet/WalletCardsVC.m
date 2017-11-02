@@ -52,10 +52,9 @@
         
         UIButton *addButton = [[UIButton alloc] initWithFrame:CGRectMake(15*UIRate, 30*UIRate, ScreenWidth - 30*UIRate, 40*UIRate)];
         [addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [addButton setTitle:@"提交" forState:UIControlStateNormal];
+        [addButton setTitle:@"添加银行卡" forState:UIControlStateNormal];
         addButton.titleLabel.font = FONT_SYSTEM_BOLD(15);
-        [addButton setBackgroundColor:[UIColor themeColor]];
-        addButton.layer.cornerRadius = 4;
+        [addButton setBackgroundImage:[UIImage imageNamed:@"btn_blue_345x40"] forState:UIControlStateNormal];
         [addButton addTarget:self action:@selector(addButtonAction) forControlEvents:UIControlEventTouchUpInside];
         [_footerView addSubview:addButton];
     }
@@ -76,6 +75,7 @@
     if (!cell) {
         cell = [[CardsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+//    cell.dividerLine.hidden = YES 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;

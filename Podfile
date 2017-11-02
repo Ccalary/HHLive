@@ -14,5 +14,6 @@ pod 'Masonry'
 pod 'IQKeyboardManager'
 pod 'KVOController'
 pod 'LCActionSheet'
+pod 'PNChart'
 
 end

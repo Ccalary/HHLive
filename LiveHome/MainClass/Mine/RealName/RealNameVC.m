@@ -38,6 +38,10 @@
 }
 
 - (void)initNormalView{
+    
+    UITapGestureRecognizer *aTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
+    [self.view addGestureRecognizer:aTap];
+    
     self.dataArray = @[@[@"真实姓名",@"请输入真实姓名"],@[@"手机号码",@"请输入手机号码"],@[@"验证码",@"请输入验证码"],@[@"身份证号",@"请输入身份证号"]];
     self.resultArray = [[NSMutableArray alloc] initWithArray:@[@"",@"",@"",@""]];
     
@@ -48,8 +52,6 @@
     _tableView.tableHeaderView = self.headerView;
     _tableView.tableFooterView = self.footerView;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.estimatedSectionHeaderHeight = NO;
-    _tableView.estimatedSectionFooterHeight = NO;
     [self.view addSubview:_tableView];
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -107,6 +109,8 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSArray *array = self.dataArray[indexPath.row];
+    //最后一个隐藏分割线
+    cell.dividerLine.hidden = (self.dataArray.count - 1 == indexPath.row) ? YES : NO;
     cell.nameLabel.text = array.firstObject;
     cell.textField.placeholder = array.lastObject;
     cell.textField.tag = 1000 + (int)indexPath.row;
@@ -171,5 +175,9 @@
     if (_resultArray.count > i){
         _resultArray[i] = textField.text;
     }
+}
+
+- (void)tapAction{
+    [self.view endEditing:YES];
 }
 @end

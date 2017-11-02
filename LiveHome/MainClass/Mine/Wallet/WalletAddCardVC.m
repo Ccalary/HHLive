@@ -29,7 +29,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
 }
 
 - (void)initView{
@@ -63,8 +62,7 @@
         [_submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_submitButton setTitle:@"提交" forState:UIControlStateNormal];
         _submitButton.titleLabel.font = FONT_SYSTEM_BOLD(15);
-        [_submitButton setBackgroundColor:[UIColor themeColor]];
-        _submitButton.layer.cornerRadius = 4;
+        [_submitButton setBackgroundImage:[UIImage imageNamed:@"btn_blue_345x40"] forState:UIControlStateNormal];
         [_submitButton addTarget:self action:@selector(submitBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _submitButton;
@@ -89,7 +87,7 @@
     cell.textField.placeholder = self.placeArray[indexPath.row];
     cell.textField.tag = 1000 + (int)indexPath.row;
     [cell.textField addTarget:self action:@selector(textFieldAction:) forControlEvents:UIControlEventEditingChanged];
-    if (indexPath.row == 2){
+    if (indexPath.row == 1){
         cell.textField.keyboardType = UIKeyboardTypeNumberPad;
     }else {
         cell.textField.keyboardType = UIKeyboardTypeDefault;

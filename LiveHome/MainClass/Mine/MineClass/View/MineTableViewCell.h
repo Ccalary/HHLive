@@ -11,4 +11,5 @@
 @interface MineTableViewCell : UITableViewCell
 @property (nonatomic, strong) UIImageView *iconImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIView *dividerLine;
 @end

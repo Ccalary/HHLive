@@ -40,8 +40,7 @@
     [withdrawBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [withdrawBtn setTitle:@"提现" forState:UIControlStateNormal];
     withdrawBtn.titleLabel.font = FONT_SYSTEM_BOLD(15);
-    [withdrawBtn setBackgroundColor:[UIColor themeColor]];
-    withdrawBtn.layer.cornerRadius = 4;
+    [withdrawBtn setBackgroundImage:[UIImage imageNamed:@"btn_blue_345x40"] forState:UIControlStateNormal];
     [withdrawBtn addTarget:self action:@selector(withdrawBtnAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:withdrawBtn];
     [withdrawBtn mas_makeConstraints:^(MASConstraintMaker *make) {

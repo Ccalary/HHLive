@@ -63,10 +63,10 @@
         make.centerY.equalTo(self.contentView);
     }];
     
-    UIView *line = [[UIView alloc] init];
-    line.backgroundColor = [UIColor bgColorLine];
-    [self.contentView addSubview:line];
-    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+    _dividerLine = [[UIView alloc] init];
+    _dividerLine.backgroundColor = [UIColor bgColorLine];
+    [self.contentView addSubview:_dividerLine];
+    [_dividerLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(60*UIRate);
         make.right.equalTo(self.contentView);
         make.height.mas_equalTo(1);

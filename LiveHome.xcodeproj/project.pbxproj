@@ -83,6 +83,25 @@
 		FEACD9211FA81D9500503C10 /* TZVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD9111FA81D9500503C10 /* TZVideoPlayerController.m */; };
 		FEACD9221FA81D9500503C10 /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD9131FA81D9500503C10 /* UIView+Layout.m */; };
 		FEACD9251FA8217600503C10 /* PhotoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD9241FA8217600503C10 /* PhotoHelper.m */; };
+		FEACD9291FA8629E00503C10 /* UserInfoEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD9281FA8629E00503C10 /* UserInfoEditVC.m */; };
+		FEACD9331FA8648300503C10 /* UserInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD9321FA8648300503C10 /* UserInfoTableViewCell.m */; };
+		FEACD9441FA87B1F00503C10 /* AddressTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD9361FA87B1F00503C10 /* AddressTableView.m */; };
+		FEACD9451FA87B1F00503C10 /* AddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD9381FA87B1F00503C10 /* AddressView.m */; };
+		FEACD9461FA87B1F00503C10 /* AppUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD93A1FA87B1F00503C10 /* AppUtils.m */; };
+		FEACD9471FA87B1F00503C10 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = FEACD93B1FA87B1F00503C10 /* area.plist */; };
+		FEACD9481FA87B1F00503C10 /* CitiesVO.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD93D1FA87B1F00503C10 /* CitiesVO.m */; };
+		FEACD9491FA87B1F00503C10 /* CityVO.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD93F1FA87B1F00503C10 /* CityVO.m */; };
+		FEACD94A1FA87B1F00503C10 /* 关闭.png in Resources */ = {isa = PBXBuildFile; fileRef = FEACD9411FA87B1F00503C10 /* 关闭.png */; };
+		FEACD94B1FA87B1F00503C10 /* 关闭@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FEACD9421FA87B1F00503C10 /* 关闭@2x.png */; };
+		FEACD94C1FA87B1F00503C10 /* 关闭@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FEACD9431FA87B1F00503C10 /* 关闭@3x.png */; };
+		FEACD9511FA8840600503C10 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD9501FA8840600503C10 /* StatisticsViewController.m */; };
+		FEACD9551FA88DA900503C10 /* StatisticsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD9541FA88DA900503C10 /* StatisticsTableViewCell.m */; };
+		FEACD9581FA8902100503C10 /* UIButton+ImageTitleSpacing.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD9561FA8902100503C10 /* UIButton+ImageTitleSpacing.m */; };
+		FEACD95C1FA94E7D00503C10 /* HHPopSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD95B1FA94E7D00503C10 /* HHPopSelectView.m */; };
+		FEACD95F1FA963B700503C10 /* StatisticsSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD95E1FA963B700503C10 /* StatisticsSelectView.m */; };
+		FEACD9621FA96B7200503C10 /* StaticSelectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD9611FA96B7200503C10 /* StaticSelectTableViewCell.m */; };
+		FEACD9651FA993BA00503C10 /* StatciCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD9641FA993BA00503C10 /* StatciCollectionViewCell.m */; };
+		FEACD96E1FA9C1D900503C10 /* StaticHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD96D1FA9C1D900503C10 /* StaticHeaderView.m */; };
 		FEE97B351FA30B8900AB2767 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE97B331FA30B8900AB2767 /* AppDelegate.m */; };
 		FEE97B381FA30BBD00AB2767 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE97B371FA30BBD00AB2767 /* HomeViewController.m */; };
 		FEE97B3B1FA30BCB00AB2767 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE97B3A1FA30BCB00AB2767 /* MineViewController.m */; };
@@ -229,6 +248,40 @@
 		FEACD9131FA81D9500503C10 /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
 		FEACD9231FA8217600503C10 /* PhotoHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoHelper.h; sourceTree = "<group>"; };
 		FEACD9241FA8217600503C10 /* PhotoHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoHelper.m; sourceTree = "<group>"; };
+		FEACD9271FA8629E00503C10 /* UserInfoEditVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoEditVC.h; sourceTree = "<group>"; };
+		FEACD9281FA8629E00503C10 /* UserInfoEditVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoEditVC.m; sourceTree = "<group>"; };
+		FEACD9311FA8648300503C10 /* UserInfoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoTableViewCell.h; sourceTree = "<group>"; };
+		FEACD9321FA8648300503C10 /* UserInfoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoTableViewCell.m; sourceTree = "<group>"; };
+		FEACD9351FA87B1F00503C10 /* AddressTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressTableView.h; sourceTree = "<group>"; };
+		FEACD9361FA87B1F00503C10 /* AddressTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressTableView.m; sourceTree = "<group>"; };
+		FEACD9371FA87B1F00503C10 /* AddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressView.h; sourceTree = "<group>"; };
+		FEACD9381FA87B1F00503C10 /* AddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressView.m; sourceTree = "<group>"; };
+		FEACD9391FA87B1F00503C10 /* AppUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUtils.h; sourceTree = "<group>"; };
+		FEACD93A1FA87B1F00503C10 /* AppUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppUtils.m; sourceTree = "<group>"; };
+		FEACD93B1FA87B1F00503C10 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		FEACD93C1FA87B1F00503C10 /* CitiesVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CitiesVO.h; sourceTree = "<group>"; };
+		FEACD93D1FA87B1F00503C10 /* CitiesVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CitiesVO.m; sourceTree = "<group>"; };
+		FEACD93E1FA87B1F00503C10 /* CityVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityVO.h; sourceTree = "<group>"; };
+		FEACD93F1FA87B1F00503C10 /* CityVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityVO.m; sourceTree = "<group>"; };
+		FEACD9411FA87B1F00503C10 /* 关闭.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "关闭.png"; sourceTree = "<group>"; };
+		FEACD9421FA87B1F00503C10 /* 关闭@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "关闭@2x.png"; sourceTree = "<group>"; };
+		FEACD9431FA87B1F00503C10 /* 关闭@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "关闭@3x.png"; sourceTree = "<group>"; };
+		FEACD94F1FA8840600503C10 /* StatisticsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
+		FEACD9501FA8840600503C10 /* StatisticsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
+		FEACD9531FA88DA900503C10 /* StatisticsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatisticsTableViewCell.h; sourceTree = "<group>"; };
+		FEACD9541FA88DA900503C10 /* StatisticsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatisticsTableViewCell.m; sourceTree = "<group>"; };
+		FEACD9561FA8902100503C10 /* UIButton+ImageTitleSpacing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ImageTitleSpacing.m"; sourceTree = "<group>"; };
+		FEACD9571FA8902100503C10 /* UIButton+ImageTitleSpacing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ImageTitleSpacing.h"; sourceTree = "<group>"; };
+		FEACD95A1FA94E7D00503C10 /* HHPopSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HHPopSelectView.h; sourceTree = "<group>"; };
+		FEACD95B1FA94E7D00503C10 /* HHPopSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HHPopSelectView.m; sourceTree = "<group>"; };
+		FEACD95D1FA963B700503C10 /* StatisticsSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatisticsSelectView.h; sourceTree = "<group>"; };
+		FEACD95E1FA963B700503C10 /* StatisticsSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatisticsSelectView.m; sourceTree = "<group>"; };
+		FEACD9601FA96B7200503C10 /* StaticSelectTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaticSelectTableViewCell.h; sourceTree = "<group>"; };
+		FEACD9611FA96B7200503C10 /* StaticSelectTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaticSelectTableViewCell.m; sourceTree = "<group>"; };
+		FEACD9631FA993BA00503C10 /* StatciCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatciCollectionViewCell.h; sourceTree = "<group>"; };
+		FEACD9641FA993BA00503C10 /* StatciCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatciCollectionViewCell.m; sourceTree = "<group>"; };
+		FEACD96C1FA9C1D900503C10 /* StaticHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaticHeaderView.h; sourceTree = "<group>"; };
+		FEACD96D1FA9C1D900503C10 /* StaticHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaticHeaderView.m; sourceTree = "<group>"; };
 		FEE97B331FA30B8900AB2767 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FEE97B341FA30B8900AB2767 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FEE97B361FA30BBD00AB2767 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -337,6 +390,8 @@
 			children = (
 				FE23DDD71FA71DED00FC6FC6 /* SendCodeButton.h */,
 				FE23DDD81FA71DED00FC6FC6 /* SendCodeButton.m */,
+				FEACD95A1FA94E7D00503C10 /* HHPopSelectView.h */,
+				FEACD95B1FA94E7D00503C10 /* HHPopSelectView.m */,
 			);
 			path = MineWidget;
 			sourceTree = "<group>";
@@ -377,10 +432,10 @@
 		FE3C22C01FA41FB800F6ACD2 /* OldVideos */ = {
 			isa = PBXGroup;
 			children = (
-				FE3C22C11FA41FD900F6ACD2 /* OldVideosVC.h */,
-				FE3C22C21FA41FD900F6ACD2 /* OldVideosVC.m */,
 				FE3C22C41FA4209500F6ACD2 /* OldVideosCollectionViewCell.h */,
 				FE3C22C51FA4209500F6ACD2 /* OldVideosCollectionViewCell.m */,
+				FE3C22C11FA41FD900F6ACD2 /* OldVideosVC.h */,
+				FE3C22C21FA41FD900F6ACD2 /* OldVideosVC.m */,
 			);
 			path = OldVideos;
 			sourceTree = "<group>";
@@ -620,6 +675,7 @@
 		FE7693DC1FA3041400400BA7 /* ThirdPart */ = {
 			isa = PBXGroup;
 			children = (
+				FEACD9341FA87B1F00503C10 /* AddressView */,
 				FEACD8F61FA81D9500503C10 /* TZImagePickerController */,
 				FE3C23091FA4630C00F6ACD2 /* ShareSDK */,
 				FE3C22B91FA41C1A00F6ACD2 /* HHMJRefresh */,
@@ -728,6 +784,8 @@
 		FE7694021FA308B700400BA7 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				FEACD94E1FA883E900503C10 /* Statistics */,
+				FEACD9261FA8626F00503C10 /* UserInfo */,
 				FE23DDCB1FA7104C00FC6FC6 /* RealName */,
 				FE3C22CB1FA42EA900F6ACD2 /* Wallet */,
 				FE3C22C71FA42B5E00F6ACD2 /* MyUse */,
@@ -774,6 +832,81 @@
 			path = TZImagePickerController;
 			sourceTree = "<group>";
 		};
+		FEACD9261FA8626F00503C10 /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				FEACD92A1FA8639F00503C10 /* View */,
+				FEACD9271FA8629E00503C10 /* UserInfoEditVC.h */,
+				FEACD9281FA8629E00503C10 /* UserInfoEditVC.m */,
+			);
+			path = UserInfo;
+			sourceTree = "<group>";
+		};
+		FEACD92A1FA8639F00503C10 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FEACD9311FA8648300503C10 /* UserInfoTableViewCell.h */,
+				FEACD9321FA8648300503C10 /* UserInfoTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FEACD9341FA87B1F00503C10 /* AddressView */ = {
+			isa = PBXGroup;
+			children = (
+				FEACD9351FA87B1F00503C10 /* AddressTableView.h */,
+				FEACD9361FA87B1F00503C10 /* AddressTableView.m */,
+				FEACD9371FA87B1F00503C10 /* AddressView.h */,
+				FEACD9381FA87B1F00503C10 /* AddressView.m */,
+				FEACD9391FA87B1F00503C10 /* AppUtils.h */,
+				FEACD93A1FA87B1F00503C10 /* AppUtils.m */,
+				FEACD93B1FA87B1F00503C10 /* area.plist */,
+				FEACD93C1FA87B1F00503C10 /* CitiesVO.h */,
+				FEACD93D1FA87B1F00503C10 /* CitiesVO.m */,
+				FEACD93E1FA87B1F00503C10 /* CityVO.h */,
+				FEACD93F1FA87B1F00503C10 /* CityVO.m */,
+				FEACD9401FA87B1F00503C10 /* image */,
+			);
+			path = AddressView;
+			sourceTree = "<group>";
+		};
+		FEACD9401FA87B1F00503C10 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				FEACD9411FA87B1F00503C10 /* 关闭.png */,
+				FEACD9421FA87B1F00503C10 /* 关闭@2x.png */,
+				FEACD9431FA87B1F00503C10 /* 关闭@3x.png */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
+		FEACD94E1FA883E900503C10 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				FEACD9521FA88D8600503C10 /* View */,
+				FEACD94F1FA8840600503C10 /* StatisticsViewController.h */,
+				FEACD9501FA8840600503C10 /* StatisticsViewController.m */,
+			);
+			path = Statistics;
+			sourceTree = "<group>";
+		};
+		FEACD9521FA88D8600503C10 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FEACD9531FA88DA900503C10 /* StatisticsTableViewCell.h */,
+				FEACD9541FA88DA900503C10 /* StatisticsTableViewCell.m */,
+				FEACD9631FA993BA00503C10 /* StatciCollectionViewCell.h */,
+				FEACD9641FA993BA00503C10 /* StatciCollectionViewCell.m */,
+				FEACD95D1FA963B700503C10 /* StatisticsSelectView.h */,
+				FEACD95E1FA963B700503C10 /* StatisticsSelectView.m */,
+				FEACD9601FA96B7200503C10 /* StaticSelectTableViewCell.h */,
+				FEACD9611FA96B7200503C10 /* StaticSelectTableViewCell.m */,
+				FEACD96C1FA9C1D900503C10 /* StaticHeaderView.h */,
+				FEACD96D1FA9C1D900503C10 /* StaticHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		FEE97B321FA30B7400AB2767 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -791,6 +924,8 @@
 				FEE97B411FA311CF00AB2767 /* NSArray+Dlog.m */,
 				FEE97B421FA311CF00AB2767 /* UIView+Extension.h */,
 				FEE97B431FA311CF00AB2767 /* UIView+Extension.m */,
+				FEACD9571FA8902100503C10 /* UIButton+ImageTitleSpacing.h */,
+				FEACD9561FA8902100503C10 /* UIButton+ImageTitleSpacing.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -889,6 +1024,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE7693CF1FA302A500400BA7 /* LaunchScreen.storyboard in Resources */,
+				FEACD9471FA87B1F00503C10 /* area.plist in Resources */,
 				FE7693FF1FA3071100400BA7 /* LCProgressHUD.bundle in Resources */,
 				FE7693CC1FA302A500400BA7 /* Assets.xcassets in Resources */,
 				FEACD91A1FA81D9500503C10 /* TZImagePickerController.bundle in Resources */,
@@ -896,6 +1032,9 @@
 				FE3C23301FA4630D00F6ACD2 /* ShareSDK.bundle in Resources */,
 				FE3C23291FA4630C00F6ACD2 /* ShareSDKUI.bundle in Resources */,
 				FE3C232F1FA4630D00F6ACD2 /* README.txt in Resources */,
+				FEACD94A1FA87B1F00503C10 /* 关闭.png in Resources */,
+				FEACD94B1FA87B1F00503C10 /* 关闭@2x.png in Resources */,
+				FEACD94C1FA87B1F00503C10 /* 关闭@3x.png in Resources */,
 				FE7693CA1FA302A500400BA7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -957,6 +1096,7 @@
 			files = (
 				FE23DDD51FA71B5100FC6FC6 /* CountdownTableViewCell.m in Sources */,
 				FE3C22D81FA44DA800F6ACD2 /* VoteViewController.m in Sources */,
+				FEACD95F1FA963B700503C10 /* StatisticsSelectView.m in Sources */,
 				FE7693FE1FA3071100400BA7 /* CNPPopupController.m in Sources */,
 				FE23DDBB1FA6CD2000FC6FC6 /* WithdrawTableViewCell2.m in Sources */,
 				FE3C22B41FA4113500F6ACD2 /* ContributeVC.m in Sources */,
@@ -965,20 +1105,28 @@
 				FEE97B4B1FA3207200AB2767 /* UserHelper.m in Sources */,
 				FEACD9221FA81D9500503C10 /* UIView+Layout.m in Sources */,
 				FEE97B441FA311CF00AB2767 /* UIColor+App.m in Sources */,
+				FEACD9511FA8840600503C10 /* StatisticsViewController.m in Sources */,
+				FEACD9581FA8902100503C10 /* UIButton+ImageTitleSpacing.m in Sources */,
 				FEACD9201FA81D9500503C10 /* TZProgressView.m in Sources */,
 				FEACD9141FA81D9500503C10 /* NSBundle+TZImagePicker.m in Sources */,
+				FEACD9441FA87B1F00503C10 /* AddressTableView.m in Sources */,
 				FEACD91D1FA81D9500503C10 /* TZPhotoPickerController.m in Sources */,
 				FE7693D21FA302A500400BA7 /* main.m in Sources */,
 				FE23DDC41FA6E27A00FC6FC6 /* ToolsHelper.m in Sources */,
+				FEACD9481FA87B1F00503C10 /* CitiesVO.m in Sources */,
 				FEACD9181FA81D9500503C10 /* TZImageCropManager.m in Sources */,
 				FEE97B351FA30B8900AB2767 /* AppDelegate.m in Sources */,
+				FEACD9291FA8629E00503C10 /* UserInfoEditVC.m in Sources */,
 				FEE97B381FA30BBD00AB2767 /* HomeViewController.m in Sources */,
 				FE3C22BF1FA41C1A00F6ACD2 /* HHRefreshNormalHeader.m in Sources */,
 				FE7693F61FA306C600400BA7 /* BaseTabBarController.m in Sources */,
 				FE3C22CE1FA42EBF00F6ACD2 /* WalletViewController.m in Sources */,
+				FEACD9461FA87B1F00503C10 /* AppUtils.m in Sources */,
 				FE3C22C61FA4209500F6ACD2 /* OldVideosCollectionViewCell.m in Sources */,
 				FE3C22CA1FA42BB400F6ACD2 /* MyUseViewController.m in Sources */,
+				FEACD9331FA8648300503C10 /* UserInfoTableViewCell.m in Sources */,
 				FEACD91E1FA81D9500503C10 /* TZPhotoPreviewCell.m in Sources */,
+				FEACD9651FA993BA00503C10 /* StatciCollectionViewCell.m in Sources */,
 				FEE97B451FA311CF00AB2767 /* NSArray+Dlog.m in Sources */,
 				FE23DDC71FA6F72500FC6FC6 /* WalletCardsVC.m in Sources */,
 				FEE97B521FA32E4300AB2767 /* MineHeaderView.m in Sources */,
@@ -990,6 +1138,7 @@
 				FE7693E61FA3053E00400BA7 /* Connect.m in Sources */,
 				FEACD9211FA81D9500503C10 /* TZVideoPlayerController.m in Sources */,
 				FE3C22DF1FA454B700F6ACD2 /* BaseTableView.m in Sources */,
+				FEACD95C1FA94E7D00503C10 /* HHPopSelectView.m in Sources */,
 				FE79C4981FA6C6C100E73F95 /* WithdrawViewController.m in Sources */,
 				FEACD9251FA8217600503C10 /* PhotoHelper.m in Sources */,
 				FEACD91F1FA81D9500503C10 /* TZPhotoPreviewController.m in Sources */,
@@ -1003,15 +1152,20 @@
 				FE3C233F1FA46FAF00F6ACD2 /* ShareTools.m in Sources */,
 				FE23DDD21FA7116500FC6FC6 /* RealNameFooterView.m in Sources */,
 				FEACD91C1FA81D9500503C10 /* TZLocationManager.m in Sources */,
+				FEACD9551FA88DA900503C10 /* StatisticsTableViewCell.m in Sources */,
 				FE7693F31FA306C600400BA7 /* BaseModel.m in Sources */,
 				FE3C22D11FA4489100F6ACD2 /* BillViewController.m in Sources */,
 				FEACD9151FA81D9500503C10 /* TZAssetCell.m in Sources */,
 				FE3C22C31FA41FD900F6ACD2 /* OldVideosVC.m in Sources */,
+				FEACD96E1FA9C1D900503C10 /* StaticHeaderView.m in Sources */,
+				FEACD9491FA87B1F00503C10 /* CityVO.m in Sources */,
 				FE3C22B81FA4135600F6ACD2 /* ContributeTableViewCell.m in Sources */,
 				FE7693F41FA306C600400BA7 /* ModelFieldError.m in Sources */,
+				FEACD9621FA96B7200503C10 /* StaticSelectTableViewCell.m in Sources */,
 				FEACD9171FA81D9500503C10 /* TZGifPhotoPreviewController.m in Sources */,
 				FE7694001FA3071100400BA7 /* LCProgressHUD.m in Sources */,
 				FEACD9161FA81D9500503C10 /* TZAssetModel.m in Sources */,
+				FEACD9451FA87B1F00503C10 /* AddressView.m in Sources */,
 				FEACD91B1FA81D9500503C10 /* TZImagePickerController.m in Sources */,
 				FE23DDCE1FA7106300FC6FC6 /* RealNameVC.m in Sources */,
 			);

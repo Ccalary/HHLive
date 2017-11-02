@@ -9,7 +9,7 @@
 #import "MineHeaderView.h"
 @interface MineHeaderView()
 @property (nonatomic, strong) UIImageView *bgImageView, *headerImageView;
-@property (nonatomic, strong) UILabel *nameLabel, *numberLabel, *contriLabel, *fansLabel;
+@property (nonatomic, strong) UILabel *nameLabel, *numberLabel;
 @end
 
 @implementation MineHeaderView
@@ -24,16 +24,6 @@
     _bgImageView = [[UIImageView alloc] initWithFrame:self.frame];
     _bgImageView.backgroundColor = [UIColor themeColor];
     [self addSubview:_bgImageView];
-    
-    UIView *dividerLine = [[UIView alloc] init];
-    dividerLine.backgroundColor = [UIColor grayColor];
-    [self addSubview:dividerLine];
-    [dividerLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(1);
-        make.height.mas_equalTo(25*UIRate);
-        make.bottom.offset(-10*UIRate);
-        make.centerX.equalTo(self);
-    }];
     
     UIButton *writeButton = [[UIButton alloc] init];
     [writeButton setImage:[UIImage imageNamed:@"mine_write_30"] forState:UIControlStateNormal];
@@ -50,59 +40,40 @@
     headerBgView.layer.cornerRadius = 45*UIRate;
     [self addSubview:headerBgView];
     [headerBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.mas_equalTo(90*UIRate);
-        make.top.offset(50*UIRate);
-        make.centerX.equalTo(self);
+        make.width.height.mas_equalTo(60*UIRate);
+        make.top.offset(60*UIRate);
+        make.left.offset(15*UIRate);
     }];
     
     _headerImageView = [[UIImageView alloc] init];
     _headerImageView.image = [UIImage imageNamed:@"header_default_60"];
     _headerImageView.layer.cornerRadius = 40*UIRate;
     [self addSubview:_headerImageView];
-    
     [_headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.mas_equalTo(80*UIRate);
+        make.width.height.mas_equalTo(55*UIRate);
         make.center.equalTo(headerBgView);
     }];
     
+    UIButton *headerButton = [[UIButton alloc] init];
+    [headerButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:headerButton];
+    [headerButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(headerBgView);
+    }];
+    
     _nameLabel = [self creatLabelText:@"名字"];
-    _numberLabel = [self creatLabelText:@"账号:8688"];
+    _numberLabel = [self creatLabelText:@"ID:8688"];
     _numberLabel.font = FONT_SYSTEM(12);
-    _contriLabel = [self creatLabelText:@"123"];
-    UILabel *contriTextLabel = [self creatLabelText:@"贡献"];
-    _fansLabel = [self creatLabelText:@"456"];
-    UILabel *fansTextLabel = [self creatLabelText:@"粉丝"];
     
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(headerBgView.mas_bottom).offset(15*UIRate);
-        make.centerX.equalTo(self);
+        make.left.equalTo(headerBgView.mas_right).offset(6*UIRate);
+        make.centerY.equalTo(headerBgView).offset(-10*UIRate);
     }];
    
     [_numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_nameLabel.mas_bottom).offset(6*UIRate);
-        make.centerX.equalTo(self);
+        make.left.equalTo(_nameLabel);
+        make.centerY.equalTo(headerBgView).offset(9*UIRate);
     }];
-    
-    [contriTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.offset(-5*UIRate);
-        make.centerX.equalTo(self).offset(-ScreenWidth/4.0);
-    }];
-    
-    [_contriLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(contriTextLabel.mas_top).offset(-2*UIRate);
-        make.centerX.equalTo(contriTextLabel);
-    }];
-    
-    [fansTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(contriTextLabel);
-        make.centerX.equalTo(self).offset(ScreenWidth/4.0);
-    }];
-    
-    [_fansLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(fansTextLabel);
-        make.centerY.equalTo(_contriLabel);
-    }];
-    
 }
 
 - (UILabel *)creatLabelText:(NSString *)text{
@@ -115,7 +86,9 @@
 }
 
 - (void)buttonAction:(UIButton *)button{
-    
+    if ([self.delegate respondsToSelector:@selector(mineHeaderViewBtnAction)]){
+        [self.delegate mineHeaderViewBtnAction];
+    }
 }
 
 @end

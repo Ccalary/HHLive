@@ -14,8 +14,10 @@
 #import "OldVideosVC.h"
 #import "MyUseViewController.h"
 #import "WalletViewController.h"
+#import "UserInfoEditVC.h"
+#import "StatisticsViewController.h"
 
-@interface MineViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface MineViewController ()<UITableViewDelegate, UITableViewDataSource,MineHeaderViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) MineHeaderView *headerView;
 @property (nonatomic, strong) NSArray *dataArray;
@@ -49,6 +51,7 @@
     _tableView.dataSource = self;
     _tableView.tableHeaderView = self.headerView;
     _tableView.backgroundColor = [UIColor bgColorMain];
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.estimatedSectionHeaderHeight = NO;
     _tableView.estimatedSectionFooterHeight = NO;
     [self.view addSubview:_tableView];
@@ -62,7 +65,8 @@
 
 - (MineHeaderView *)headerView{
     if (!_headerView){
-        _headerView = [[MineHeaderView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 257*UIRate)];
+        _headerView = [[MineHeaderView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 155*UIRate)];
+        _headerView.delegate = self;
     }
     return _headerView;
 }
@@ -84,6 +88,8 @@
     if (!cell) {
         cell = [[MineTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    NSArray *array = self.dataArray[indexPath.section];
+    cell.dividerLine.hidden = (array.count-1 == indexPath.row) ? YES : NO;
     cell.iconImageView.image = [UIImage imageNamed:self.imageArray[indexPath.section][indexPath.row]];
     cell.titleLabel.text = self.dataArray[indexPath.section][indexPath.row];
     return cell;
@@ -110,12 +116,7 @@
                 [self.navigationController pushViewController:[[WalletViewController alloc] init] animated:YES];
             }
                 break;
-            case 1://历史视频
-            {
-                [self.navigationController pushViewController:[[OldVideosVC alloc] init] animated:YES];
-            }
-                break;
-            case 2://我的应用
+            case 1://我的应用
             {
                 [self.navigationController pushViewController:[[MyUseViewController alloc] init] animated:YES];
             }
@@ -124,9 +125,30 @@
                 break;
         }
     }else if (indexPath.section == 1){
+        switch (indexPath.row) {
+            case 0://历史视频
+            {
+                [self.navigationController pushViewController:[[OldVideosVC alloc] init] animated:YES];
+            }
+                break;
+            case 1://直播统计
+            {
+                [self.navigationController pushViewController:[[StatisticsViewController alloc] init] animated:YES];
+            }
+                break;
+            default:
+                break;
+        }
+        
+    }else if (indexPath.section == 2){
         if (indexPath.row == 0){//设置
-            [self.navigationController pushViewController:[[RealNameVC alloc] init] animated:YES];
+            
         }
     }
+}
+
+#pragma mark - MineHeaderViewDelegate
+- (void)mineHeaderViewBtnAction{
+    [self.navigationController pushViewController:[[UserInfoEditVC alloc] init] animated:YES];
 }
 @end

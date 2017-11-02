@@ -90,11 +90,10 @@
     }];
     
     UIButton *uploadBtn = [[UIButton alloc] init];
+    [uploadBtn setBackgroundImage:[UIImage imageNamed:@"btn_blue_345x40"] forState:UIControlStateNormal];
     [uploadBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [uploadBtn setTitle:@"提交审核" forState:UIControlStateNormal];
     uploadBtn.titleLabel.font = FONT_SYSTEM_BOLD(15);
-    [uploadBtn setBackgroundColor:[UIColor themeColor]];
-    uploadBtn.layer.cornerRadius = 4;
     uploadBtn.tag = RealNameFooterViewBtnTypeSubmit;
     [uploadBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:uploadBtn];

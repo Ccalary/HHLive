@@ -27,9 +27,17 @@
     return [UIColor colorWithHex:0xececec];
 }
 
++ (UIColor *)bgColorLineDarkGray{
+    return [UIColor colorWithHex:0x4c4c4c];
+}
+
 //MARK:- Font
 + (UIColor *)fontColorBlack{
     return [UIColor colorWithHex:0x333333];
+}
+
++ (UIColor *)fontColorDarkGray{
+    return [UIColor colorWithHex:0x4c4c4c];
 }
 
 + (UIColor *)fontColorLightGray{

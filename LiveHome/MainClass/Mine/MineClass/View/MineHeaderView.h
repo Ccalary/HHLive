@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol MineHeaderViewDelegate<NSObject>
+- (void)mineHeaderViewBtnAction;
+@end
 
 @interface MineHeaderView : UIView
-
+@property (nonatomic, weak) id<MineHeaderViewDelegate> delegate;
 @end
