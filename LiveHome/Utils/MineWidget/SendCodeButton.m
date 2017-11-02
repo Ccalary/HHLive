@@ -27,6 +27,8 @@
 
 - (instancetype)initWithFrame:(CGRect)frame title:(NSString *)title seconds:(int)seconds{
     if (self = [super initWithFrame:frame]){
+        self.title = title;
+        self.totalSeconds = seconds;
         [self setUp];
     }
     return self;

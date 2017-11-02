@@ -67,6 +67,9 @@
 		FE7693FF1FA3071100400BA7 /* LCProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FE7693FB1FA3071100400BA7 /* LCProgressHUD.bundle */; };
 		FE7694001FA3071100400BA7 /* LCProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7693FD1FA3071100400BA7 /* LCProgressHUD.m */; };
 		FE79C4981FA6C6C100E73F95 /* WithdrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE79C4971FA6C6C100E73F95 /* WithdrawViewController.m */; };
+		FE9CB6171FAAB0E30073B8B9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE9CB6161FAAB0E30073B8B9 /* LoginViewController.m */; };
+		FE9CB61D1FAABA150073B8B9 /* PasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE9CB61C1FAABA150073B8B9 /* PasswordViewController.m */; };
+		FE9CB6201FAAC0150073B8B9 /* PopSecurityCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE9CB61F1FAAC0150073B8B9 /* PopSecurityCodeView.m */; };
 		FEACD9141FA81D9500503C10 /* NSBundle+TZImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD8F81FA81D9500503C10 /* NSBundle+TZImagePicker.m */; };
 		FEACD9151FA81D9500503C10 /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD8FA1FA81D9500503C10 /* TZAssetCell.m */; };
 		FEACD9161FA81D9500503C10 /* TZAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD8FC1FA81D9500503C10 /* TZAssetModel.m */; };
@@ -217,6 +220,12 @@
 		FE7693FD1FA3071100400BA7 /* LCProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCProgressHUD.m; sourceTree = "<group>"; };
 		FE79C4961FA6C6C100E73F95 /* WithdrawViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawViewController.h; sourceTree = "<group>"; };
 		FE79C4971FA6C6C100E73F95 /* WithdrawViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawViewController.m; sourceTree = "<group>"; };
+		FE9CB6151FAAB0E30073B8B9 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		FE9CB6161FAAB0E30073B8B9 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		FE9CB61B1FAABA150073B8B9 /* PasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasswordViewController.h; sourceTree = "<group>"; };
+		FE9CB61C1FAABA150073B8B9 /* PasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PasswordViewController.m; sourceTree = "<group>"; };
+		FE9CB61E1FAAC0150073B8B9 /* PopSecurityCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PopSecurityCodeView.h; sourceTree = "<group>"; };
+		FE9CB61F1FAAC0150073B8B9 /* PopSecurityCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PopSecurityCodeView.m; sourceTree = "<group>"; };
 		FEACD8F71FA81D9500503C10 /* NSBundle+TZImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+TZImagePicker.h"; sourceTree = "<group>"; };
 		FEACD8F81FA81D9500503C10 /* NSBundle+TZImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+TZImagePicker.m"; sourceTree = "<group>"; };
 		FEACD8F91FA81D9500503C10 /* TZAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetCell.h; sourceTree = "<group>"; };
@@ -649,6 +658,7 @@
 				FE7693E81FA306C600400BA7 /* Base */,
 				FE7694021FA308B700400BA7 /* Mine */,
 				FE7694011FA3088600400BA7 /* Home */,
+				FE9CB6131FAAAF300073B8B9 /* Login */,
 			);
 			path = MainClass;
 			sourceTree = "<group>";
@@ -794,6 +804,27 @@
 				FEE97B4F1FA32E2900AB2767 /* MineClass */,
 			);
 			path = Mine;
+			sourceTree = "<group>";
+		};
+		FE9CB6131FAAAF300073B8B9 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FE9CB6141FAAB0D00073B8B9 /* View */,
+				FE9CB6151FAAB0E30073B8B9 /* LoginViewController.h */,
+				FE9CB6161FAAB0E30073B8B9 /* LoginViewController.m */,
+				FE9CB61B1FAABA150073B8B9 /* PasswordViewController.h */,
+				FE9CB61C1FAABA150073B8B9 /* PasswordViewController.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		FE9CB6141FAAB0D00073B8B9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FE9CB61E1FAAC0150073B8B9 /* PopSecurityCodeView.h */,
+				FE9CB61F1FAAC0150073B8B9 /* PopSecurityCodeView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		FEACD8F61FA81D9500503C10 /* TZImagePickerController */ = {
@@ -1123,6 +1154,7 @@
 				FE3C22CE1FA42EBF00F6ACD2 /* WalletViewController.m in Sources */,
 				FEACD9461FA87B1F00503C10 /* AppUtils.m in Sources */,
 				FE3C22C61FA4209500F6ACD2 /* OldVideosCollectionViewCell.m in Sources */,
+				FE9CB6171FAAB0E30073B8B9 /* LoginViewController.m in Sources */,
 				FE3C22CA1FA42BB400F6ACD2 /* MyUseViewController.m in Sources */,
 				FEACD9331FA8648300503C10 /* UserInfoTableViewCell.m in Sources */,
 				FEACD91E1FA81D9500503C10 /* TZPhotoPreviewCell.m in Sources */,
@@ -1137,6 +1169,7 @@
 				FE23DDCA1FA6F90400FC6FC6 /* CardsTableViewCell.m in Sources */,
 				FE7693E61FA3053E00400BA7 /* Connect.m in Sources */,
 				FEACD9211FA81D9500503C10 /* TZVideoPlayerController.m in Sources */,
+				FE9CB61D1FAABA150073B8B9 /* PasswordViewController.m in Sources */,
 				FE3C22DF1FA454B700F6ACD2 /* BaseTableView.m in Sources */,
 				FEACD95C1FA94E7D00503C10 /* HHPopSelectView.m in Sources */,
 				FE79C4981FA6C6C100E73F95 /* WithdrawViewController.m in Sources */,
@@ -1148,6 +1181,7 @@
 				FE3C22BE1FA41C1A00F6ACD2 /* HHRefreshNormalFooter.m in Sources */,
 				FE3C22DB1FA44FB300F6ACD2 /* SignInViewController.m in Sources */,
 				FE7693F51FA306C600400BA7 /* BaseNavigationController.m in Sources */,
+				FE9CB6201FAAC0150073B8B9 /* PopSecurityCodeView.m in Sources */,
 				FEE97B461FA311CF00AB2767 /* UIView+Extension.m in Sources */,
 				FE3C233F1FA46FAF00F6ACD2 /* ShareTools.m in Sources */,
 				FE23DDD21FA7116500FC6FC6 /* RealNameFooterView.m in Sources */,

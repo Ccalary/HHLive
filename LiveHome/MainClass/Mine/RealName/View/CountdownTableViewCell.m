@@ -94,7 +94,7 @@
         make.left.equalTo(self.holdView);
     }];
     
-    SendCodeButton *button = [[SendCodeButton alloc] initWithTitle:@"获取验证码" seconds:60];
+    SendCodeButton *button = [[SendCodeButton alloc] initWithTitle:@"获取验证码" seconds:0];
     button.delegate = self;
     [self.holdView addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {

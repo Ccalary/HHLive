@@ -16,6 +16,7 @@
 #import "WalletViewController.h"
 #import "UserInfoEditVC.h"
 #import "StatisticsViewController.h"
+#import "PasswordViewController.h"
 
 @interface MineViewController ()<UITableViewDelegate, UITableViewDataSource,MineHeaderViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -142,7 +143,7 @@
         
     }else if (indexPath.section == 2){
         if (indexPath.row == 0){//设置
-            
+            [self.navigationController pushViewController:[[PasswordViewController alloc] initWithType:PasswordVCTypeForgotPsd] animated:YES];
         }
     }
 }
