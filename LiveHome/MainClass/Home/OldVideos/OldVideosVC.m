@@ -8,10 +8,13 @@
 
 #import "OldVideosVC.h"
 #import "OldVideosCollectionViewCell.h"
+#import "FBKVOController.h"
 
 @interface OldVideosVC ()<UICollectionViewDelegateFlowLayout,UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *mCollectionView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) FBKVOController *kvoController;
+@property (nonatomic, strong) UIView *holdView;
 @end
 
 @implementation OldVideosVC
@@ -19,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initView];
+    [self initDefaultView];
+    [self initFBKVO];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,7 +41,7 @@
 
 - (void)initView{
     self.view.backgroundColor = [UIColor bgColorMain];
-    self.navigationItem.title = @"历史视频";
+    self.navigationItem.title = @"历史";
     
     CGFloat ItemWidth = (ScreenWidth - 15*UIRate)/2.0;
     CGFloat ItemHeight = 153*UIRate;
@@ -67,6 +72,59 @@
     }];
 }
 
+- (void)initDefaultView{
+    
+    _holdView = [[UIView alloc] init];
+    _holdView.backgroundColor = [UIColor clearColor];
+    _holdView.hidden = YES;
+    [self.view addSubview:_holdView];
+    
+    UIImageView *defaultImageView = [[UIImageView alloc] init];
+//    defaultImageView.image = [UIImage imageNamed:@"c_default_nothing_98x106"];
+    defaultImageView.backgroundColor = [UIColor grayColor];
+    [_holdView addSubview:defaultImageView];
+    
+    UILabel *stringLabel = [[UILabel alloc] init];
+    stringLabel.numberOfLines = 0;
+    stringLabel.font = FONT_SYSTEM(15);
+  
+    stringLabel.textColor = [UIColor fontColorLightGray];
+    [_holdView addSubview:stringLabel];
+    
+    NSString *textString = @"您还没有直播历史\n请开始直播吧！";
+    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:textString];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:8]; //调整行间距
+    [attributeStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [attributeStr length])];
+    stringLabel.attributedText = attributeStr;
+    stringLabel.textAlignment = NSTextAlignmentCenter;
+    
+    [_holdView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    [defaultImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(_holdView);
+        make.top.offset(135*UIRate);
+        make.width.mas_equalTo(150*UIRate);
+        make.height.mas_equalTo(150*UIRate);
+    }];
+    [stringLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(_holdView);
+        make.top.equalTo(defaultImageView.mas_bottom).offset(35*UIRate);
+    }];
+}
+
+- (void)initFBKVO{
+    //KVO
+    __weak typeof (self) weakSelf = self;
+    self.kvoController = [FBKVOController controllerWithObserver:self];
+    [self.kvoController observe:self.mCollectionView keyPath:@"contentSize" options:NSKeyValueObservingOptionNew block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
+        
+        CGFloat height =  weakSelf.mCollectionView.contentSize.height;
+        _holdView.hidden = (height > 20) ? YES : NO;
+    }];
+}
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
@@ -74,14 +132,13 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    return arc4random()%2;
 }
 
 //cell的记载
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     OldVideosCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CellIdentifier" forIndexPath:indexPath];
-    
     return cell;
 }
 

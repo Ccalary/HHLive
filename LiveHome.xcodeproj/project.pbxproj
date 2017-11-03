@@ -18,6 +18,8 @@
 		FE23DDD21FA7116500FC6FC6 /* RealNameFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE23DDD11FA7116500FC6FC6 /* RealNameFooterView.m */; };
 		FE23DDD51FA71B5100FC6FC6 /* CountdownTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE23DDD41FA71B5100FC6FC6 /* CountdownTableViewCell.m */; };
 		FE23DDD91FA71DED00FC6FC6 /* SendCodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FE23DDD81FA71DED00FC6FC6 /* SendCodeButton.m */; };
+		FE33FEFB1FABFDE800D9A082 /* BaseTabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = FE33FEFA1FABFDE800D9A082 /* BaseTabbar.m */; };
+		FE33FF001FAC338100D9A082 /* LiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE33FEFF1FAC338100D9A082 /* LiveViewController.m */; };
 		FE3C22B11FA4072500F6ACD2 /* MineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE3C22B01FA4072500F6ACD2 /* MineTableViewCell.m */; };
 		FE3C22B41FA4113500F6ACD2 /* ContributeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE3C22B31FA4113500F6ACD2 /* ContributeVC.m */; };
 		FE3C22B81FA4135600F6ACD2 /* ContributeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE3C22B71FA4135600F6ACD2 /* ContributeTableViewCell.m */; };
@@ -106,7 +108,6 @@
 		FEACD9651FA993BA00503C10 /* StatciCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD9641FA993BA00503C10 /* StatciCollectionViewCell.m */; };
 		FEACD96E1FA9C1D900503C10 /* StaticHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEACD96D1FA9C1D900503C10 /* StaticHeaderView.m */; };
 		FEE97B351FA30B8900AB2767 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE97B331FA30B8900AB2767 /* AppDelegate.m */; };
-		FEE97B381FA30BBD00AB2767 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE97B371FA30BBD00AB2767 /* HomeViewController.m */; };
 		FEE97B3B1FA30BCB00AB2767 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE97B3A1FA30BCB00AB2767 /* MineViewController.m */; };
 		FEE97B441FA311CF00AB2767 /* UIColor+App.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE97B3F1FA311CF00AB2767 /* UIColor+App.m */; };
 		FEE97B451FA311CF00AB2767 /* NSArray+Dlog.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE97B411FA311CF00AB2767 /* NSArray+Dlog.m */; };
@@ -139,6 +140,10 @@
 		FE23DDD41FA71B5100FC6FC6 /* CountdownTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CountdownTableViewCell.m; sourceTree = "<group>"; };
 		FE23DDD71FA71DED00FC6FC6 /* SendCodeButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SendCodeButton.h; sourceTree = "<group>"; };
 		FE23DDD81FA71DED00FC6FC6 /* SendCodeButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SendCodeButton.m; sourceTree = "<group>"; };
+		FE33FEF91FABFDE800D9A082 /* BaseTabbar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTabbar.h; sourceTree = "<group>"; };
+		FE33FEFA1FABFDE800D9A082 /* BaseTabbar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTabbar.m; sourceTree = "<group>"; };
+		FE33FEFE1FAC338100D9A082 /* LiveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveViewController.h; sourceTree = "<group>"; };
+		FE33FEFF1FAC338100D9A082 /* LiveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveViewController.m; sourceTree = "<group>"; };
 		FE3C22AF1FA4072500F6ACD2 /* MineTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineTableViewCell.h; sourceTree = "<group>"; };
 		FE3C22B01FA4072500F6ACD2 /* MineTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineTableViewCell.m; sourceTree = "<group>"; };
 		FE3C22B21FA4113500F6ACD2 /* ContributeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContributeVC.h; sourceTree = "<group>"; };
@@ -293,8 +298,6 @@
 		FEACD96D1FA9C1D900503C10 /* StaticHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaticHeaderView.m; sourceTree = "<group>"; };
 		FEE97B331FA30B8900AB2767 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FEE97B341FA30B8900AB2767 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		FEE97B361FA30BBD00AB2767 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		FEE97B371FA30BBD00AB2767 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		FEE97B391FA30BCB00AB2767 /* MineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
 		FEE97B3A1FA30BCB00AB2767 /* MineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
 		FEE97B3E1FA311CF00AB2767 /* UIColor+App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+App.h"; sourceTree = "<group>"; };
@@ -405,6 +408,23 @@
 			path = MineWidget;
 			sourceTree = "<group>";
 		};
+		FE33FEFC1FAC335600D9A082 /* Live */ = {
+			isa = PBXGroup;
+			children = (
+				FE33FEFD1FAC336600D9A082 /* View */,
+				FE33FEFE1FAC338100D9A082 /* LiveViewController.h */,
+				FE33FEFF1FAC338100D9A082 /* LiveViewController.m */,
+			);
+			path = Live;
+			sourceTree = "<group>";
+		};
+		FE33FEFD1FAC336600D9A082 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		FE3C22AE1FA4070900F6ACD2 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -499,6 +519,8 @@
 			children = (
 				FE3C22DE1FA454B700F6ACD2 /* BaseTableView.h */,
 				FE3C22DD1FA454B700F6ACD2 /* BaseTableView.m */,
+				FE33FEF91FABFDE800D9A082 /* BaseTabbar.h */,
+				FE33FEFA1FABFDE800D9A082 /* BaseTabbar.m */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -656,8 +678,9 @@
 			isa = PBXGroup;
 			children = (
 				FE7693E81FA306C600400BA7 /* Base */,
-				FE7694021FA308B700400BA7 /* Mine */,
 				FE7694011FA3088600400BA7 /* Home */,
+				FE33FEFC1FAC335600D9A082 /* Live */,
+				FE7694021FA308B700400BA7 /* Mine */,
 				FE9CB6131FAAAF300073B8B9 /* Login */,
 			);
 			path = MainClass;
@@ -785,8 +808,7 @@
 		FE7694011FA3088600400BA7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				FEE97B361FA30BBD00AB2767 /* HomeViewController.h */,
-				FEE97B371FA30BBD00AB2767 /* HomeViewController.m */,
+				FE3C22C01FA41FB800F6ACD2 /* OldVideos */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -799,7 +821,6 @@
 				FE23DDCB1FA7104C00FC6FC6 /* RealName */,
 				FE3C22CB1FA42EA900F6ACD2 /* Wallet */,
 				FE3C22C71FA42B5E00F6ACD2 /* MyUse */,
-				FE3C22C01FA41FB800F6ACD2 /* OldVideos */,
 				FE3C22B51FA4133300F6ACD2 /* Contribute */,
 				FEE97B4F1FA32E2900AB2767 /* MineClass */,
 			);
@@ -1125,6 +1146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE33FF001FAC338100D9A082 /* LiveViewController.m in Sources */,
 				FE23DDD51FA71B5100FC6FC6 /* CountdownTableViewCell.m in Sources */,
 				FE3C22D81FA44DA800F6ACD2 /* VoteViewController.m in Sources */,
 				FEACD95F1FA963B700503C10 /* StatisticsSelectView.m in Sources */,
@@ -1148,7 +1170,6 @@
 				FEACD9181FA81D9500503C10 /* TZImageCropManager.m in Sources */,
 				FEE97B351FA30B8900AB2767 /* AppDelegate.m in Sources */,
 				FEACD9291FA8629E00503C10 /* UserInfoEditVC.m in Sources */,
-				FEE97B381FA30BBD00AB2767 /* HomeViewController.m in Sources */,
 				FE3C22BF1FA41C1A00F6ACD2 /* HHRefreshNormalHeader.m in Sources */,
 				FE7693F61FA306C600400BA7 /* BaseTabBarController.m in Sources */,
 				FE3C22CE1FA42EBF00F6ACD2 /* WalletViewController.m in Sources */,
@@ -1178,6 +1199,7 @@
 				FE3C23451FA4839600F6ACD2 /* AddCardTableViewCell.m in Sources */,
 				FE3C22B11FA4072500F6ACD2 /* MineTableViewCell.m in Sources */,
 				FEACD9191FA81D9500503C10 /* TZImageManager.m in Sources */,
+				FE33FEFB1FABFDE800D9A082 /* BaseTabbar.m in Sources */,
 				FE3C22BE1FA41C1A00F6ACD2 /* HHRefreshNormalFooter.m in Sources */,
 				FE3C22DB1FA44FB300F6ACD2 /* SignInViewController.m in Sources */,
 				FE7693F51FA306C600400BA7 /* BaseNavigationController.m in Sources */,

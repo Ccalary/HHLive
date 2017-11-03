@@ -7,7 +7,6 @@
 //
 
 #import "MineViewController.h"
-#import "HomeViewController.h"
 #import "MineHeaderView.h"
 #import "MineTableViewCell.h"
 #import "RealNameVC.h"
