@@ -26,7 +26,7 @@
     [self addSubview:_bgImageView];
     
     UIButton *writeButton = [[UIButton alloc] init];
-    [writeButton setImage:[UIImage imageNamed:@"mine_write_30"] forState:UIControlStateNormal];
+    [writeButton setImage:[UIImage imageNamed:@"mine_write_23"] forState:UIControlStateNormal];
     [writeButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:writeButton];
     [writeButton mas_makeConstraints:^(MASConstraintMaker *make) {

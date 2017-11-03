@@ -10,8 +10,6 @@
 #import "MineHeaderView.h"
 #import "MineTableViewCell.h"
 #import "RealNameVC.h"
-#import "OldVideosVC.h"
-#import "MyUseViewController.h"
 #import "WalletViewController.h"
 #import "UserInfoEditVC.h"
 #import "StatisticsViewController.h"
@@ -28,8 +26,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _dataArray = @[@[@"我的钱包",@"我的应用"],@[@"历史视频",@"直播统计"],@[@"设置"]];
-    _imageArray = @[@[@"mine_wallet_20",@"mine_wallet_20"],@[@"mine_wallet_20",@"mine_wallet_20"],@[@"mine_setting_20"]];
+    _dataArray = @[@[@"我的钱包"],@[@"直播统计"],@[@"设置"]];
+    _imageArray = @[@[@"mine_wallet_18"],@[@"mine_statics_18"],@[@"mine_setting_18"]];
     [self initView];
 }
 
@@ -116,22 +114,12 @@
                 [self.navigationController pushViewController:[[WalletViewController alloc] init] animated:YES];
             }
                 break;
-            case 1://我的应用
-            {
-                [self.navigationController pushViewController:[[MyUseViewController alloc] init] animated:YES];
-            }
-                break;
             default:
                 break;
         }
     }else if (indexPath.section == 1){
         switch (indexPath.row) {
-            case 0://历史视频
-            {
-                [self.navigationController pushViewController:[[OldVideosVC alloc] init] animated:YES];
-            }
-                break;
-            case 1://直播统计
+            case 0://直播统计
             {
                 [self.navigationController pushViewController:[[StatisticsViewController alloc] init] animated:YES];
             }

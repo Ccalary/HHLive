@@ -8,9 +8,11 @@
 
 #import "BaseTabBarController.h"
 #import "BaseNavigationController.h"
-#import "OldVideosVC.h"
-#import "MineViewController.h"
 #import "BaseTabbar.h"
+#import "OldVideosVC.h"
+#import "MyUseViewController.h"
+#import "StreamingViewController.h"
+#import "MineViewController.h"
 
 @interface BaseTabBarController ()<BaseTabbarDelegate>
 
@@ -38,10 +40,10 @@
 //添加子控制器
 - (void)addChildViewControllers{
     
-    [self addChildrenViewController:[[OldVideosVC alloc] init] andTitle:@"历史" andImageName:@"tab_me" andSelectImage:@"tab_me_pre"];
-     [self addChildrenViewController:[[OldVideosVC alloc] init] andTitle:@"首页" andImageName:@"tab_me" andSelectImage:@"tab_me_pre"];
-     [self addChildrenViewController:[[OldVideosVC alloc] init] andTitle:@"首页" andImageName:@"tab_me" andSelectImage:@"tab_me_pre"];
-    [self addChildrenViewController:[[MineViewController alloc] init] andTitle:@"我" andImageName:@"tab_me" andSelectImage:@"tab_me_pre"];
+    [self addChildrenViewController:[[OldVideosVC alloc] init] andTitle:@"历史" andImageName:@"tab_history" andSelectImage:@"tab_history_pre"];
+     [self addChildrenViewController:[[MyUseViewController alloc] init] andTitle:@"应用" andImageName:@"tab_use" andSelectImage:@"tab_use_pre"];
+     [self addChildrenViewController:[[OldVideosVC alloc] init] andTitle:@"首页" andImageName:@"tab_msg" andSelectImage:@"tab_msg_pre"];
+    [self addChildrenViewController:[[MineViewController alloc] init] andTitle:@"我" andImageName:@"tab_mine" andSelectImage:@"tab_mine_pre"];
 }
 
 - (void)addChildrenViewController:(UIViewController *)childVC andTitle:(NSString *)title andImageName:(NSString *)imageName andSelectImage:(NSString *)selectedImage{
@@ -55,7 +57,10 @@
 }
 
 - (void)baseTabbarClickButtonAction:(BaseTabbar *)tabBar{
-    DLog(@"点击了中间按钮");
+    
+    StreamingViewController *vc = [[StreamingViewController alloc] init];
+    BaseNavigationController *baseNav = [[BaseNavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:baseNav animated:YES completion:nil];
 }
 
 @end

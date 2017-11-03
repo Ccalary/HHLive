@@ -28,7 +28,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
- 
 }
 
 - (NSMutableArray *)dataArray
@@ -80,8 +79,7 @@
     [self.view addSubview:_holdView];
     
     UIImageView *defaultImageView = [[UIImageView alloc] init];
-//    defaultImageView.image = [UIImage imageNamed:@"c_default_nothing_98x106"];
-    defaultImageView.backgroundColor = [UIColor grayColor];
+    defaultImageView.image = [UIImage imageNamed:@"camera_150"];
     [_holdView addSubview:defaultImageView];
     
     UILabel *stringLabel = [[UILabel alloc] init];
@@ -132,7 +130,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return arc4random()%2;
+    return arc4random()%5;
 }
 
 //cell的记载

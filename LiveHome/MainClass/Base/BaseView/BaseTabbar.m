@@ -24,8 +24,8 @@
     if (self=[super initWithFrame:frame]) {
         self.backgroundColor = [UIColor whiteColor];
         _plusBtn = [[UIButton alloc] init];
-        [_plusBtn setBackgroundImage:[UIImage imageNamed:@"post_normal"] forState:UIControlStateNormal];
-        [_plusBtn setBackgroundImage:[UIImage imageNamed:@"post_normal"] forState:UIControlStateHighlighted];
+        [_plusBtn setBackgroundImage:[UIImage imageNamed:@"tab_start_60"] forState:UIControlStateNormal];
+//        [_plusBtn setBackgroundImage:[UIImage imageNamed:@"tab_start_60"] forState:UIControlStateHighlighted];
         [_plusBtn addTarget:self action:@selector(plusBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_plusBtn];
         
@@ -46,7 +46,6 @@
     self.plusBtn.centerX = self.centerX;
     //调整发布按钮的顶点Y值
     self.plusBtn.y =  - 2*TAB_MARGIN ;
-    DLog(@"%f",self.height);
     //标题
     [_titleLabel sizeToFit];
     _titleLabel.centerX = self.plusBtn.centerX;

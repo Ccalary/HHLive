@@ -60,13 +60,24 @@
 }
 
 - (void)initFinishView{
+    
+    UIImageView *imageView = [[UIImageView alloc] init];
+    imageView.image = [UIImage imageNamed:@""];
+    [self.view addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(97*UIRate);
+        make.top.offset(115*UIRate);
+        make.centerX.equalTo(self.view);
+    }];
+    
     UILabel *label = [[UILabel alloc] init];
     label.font = FONT_SYSTEM(15);
     label.textColor = [UIColor fontColorLightGray];
     label.text = @"实名认证已成功";
     [self.view addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self.view);
+        make.top.equalTo(imageView.mas_bottom).offset(25*UIRate);
+        make.centerX.equalTo(self.view);
     }];
 }
 
