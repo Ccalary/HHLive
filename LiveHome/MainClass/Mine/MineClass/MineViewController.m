@@ -14,6 +14,7 @@
 #import "UserInfoEditVC.h"
 #import "StatisticsViewController.h"
 #import "PasswordViewController.h"
+#import "LoginViewController.h"
 
 @interface MineViewController ()<UITableViewDelegate, UITableViewDataSource,MineHeaderViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -137,6 +138,6 @@
 
 #pragma mark - MineHeaderViewDelegate
 - (void)mineHeaderViewBtnAction{
-    [self.navigationController pushViewController:[[UserInfoEditVC alloc] init] animated:YES];
+    [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
 }
 @end

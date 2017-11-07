@@ -13,5 +13,6 @@
 @property (strong, nonatomic) UIWindow *window;
 //允许横屏
 @property (nonatomic, assign) BOOL allowLandscapeRight;
+
 @end
 

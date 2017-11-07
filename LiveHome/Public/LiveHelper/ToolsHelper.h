@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface ToolsHelper : NSObject
+//字典转Json字符串
++ (NSString*)dictionaryToJson:(NSDictionary *)dic;
+//json转字典
++ (NSDictionary *)dictionaryFromJson:(NSString *)jsonString;
+
 /**
  改变某些字体的颜色
  

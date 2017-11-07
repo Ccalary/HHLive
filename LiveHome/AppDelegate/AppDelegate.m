@@ -15,6 +15,11 @@
 #import <TencentOpenAPI/QQApiInterface.h>
 //微信SDK头文件
 #import "WXApi.h"
+#import <RongIMLib/RongIMLib.h>
+#import "RCDLive.h"
+#import "RCDLiveGiftMessage.h"
+
+#define RONGCLOUD_IM_APPKEY @"lmxuhwagl0t2d"
 
 @interface AppDelegate ()
 
@@ -31,6 +36,18 @@
     
     //初始化shardSdk
     [self registerShareSDK];
+    
+    [[RCDLive sharedRCDLive] initRongCloud:RONGCLOUD_IM_APPKEY];
+    //注册自定义消息
+    [[RCDLive sharedRCDLive] registerRongCloudMessageType:[RCDLiveGiftMessage class]];
+    //连接融云
+    [[RCDLive sharedRCDLive] connectRongCloudWithToken:@"yHHdFKDqrs+9Nd/7ycnLtxTpTgsOeTAqKlgBVq+WUqk9gDZVco/iCZQu5lTJdNrqOcvAx/yErmOZiMHxKp9tcg==" success:^(NSString *userId) {
+        NSLog(@"融云登录成功");
+    } error:^(RCConnectErrorCode status) {
+        
+    } tokenIncorrect:^{
+        
+    }];
     
     return YES;
 }

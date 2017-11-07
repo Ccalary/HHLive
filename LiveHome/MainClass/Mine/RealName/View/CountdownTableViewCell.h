@@ -20,4 +20,7 @@ typedef void(^countdownBlock)(void);
 
 //是否展示倒计时控件
 - (void)countdownViewHidden:(BOOL)hidden;
+
+//开始倒计时
+- (void)codeCountdownStart;
 @end

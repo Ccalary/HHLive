@@ -52,11 +52,20 @@ typedef NS_ENUM(NSInteger, LCProgressHUDStatus) {
 /** 在 当前View 上添加一个提示`失败`的 HUD */
 + (void)showFailure:(NSString *)text;
 
+/** 在 keyWindow 上添加一个提示`失败`的 HUD */
++ (void)showKeyWindowFailure:(NSString *)text;
+
 /** 在 当前View 上添加一个提示`成功`的 HUD */
 + (void)showSuccess:(NSString *)text;
 
+/** 在 keyWindow 上添加一个提示`成功`的 HUD */
++ (void)showKeyWindowSuccess:(NSString *)text;
+
 /** 在 当前View 上添加一个提示`等待`的 HUD, 需要手动关闭 */
 + (void)showLoading:(NSString *)text;
+
+/** 在 keyWindow 上添加一个提示`等待`的 HUD, 需要手动关闭 */
++ (void)showKeyWindowLoading:(NSString *)text;
 
 /** 手动隐藏 HUD */
 + (void)hide;

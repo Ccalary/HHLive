@@ -49,6 +49,11 @@
 	<string>21f520aab0aa6</string>
 	<key>MOBAppSecret</key>
 	<string>f59338f755e1d6c4485042ab8a8be4e5</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>访问相机</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

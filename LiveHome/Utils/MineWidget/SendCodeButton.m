@@ -13,11 +13,23 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, assign) int totalSeconds;
 @property (nonatomic, assign) int num;
+@property (nonatomic, assign) BOOL isAuto;//是否自动开始
 @end
 
 @implementation SendCodeButton
 - (instancetype)initWithTitle:(NSString *)title seconds:(int)seconds{
     if (self = [super init]){
+        self.isAuto = YES;
+        self.title = title;
+        self.totalSeconds = seconds;
+        [self setUp];
+    }
+    return self;
+}
+
+- (instancetype)initManualWithTitle:(NSString *)title seconds:(int)seconds{//手动开始
+    if (self = [super init]){
+        self.isAuto = NO;
         self.title = title;
         self.totalSeconds = seconds;
         [self setUp];
@@ -27,12 +39,14 @@
 
 - (instancetype)initWithFrame:(CGRect)frame title:(NSString *)title seconds:(int)seconds{
     if (self = [super initWithFrame:frame]){
+        self.isAuto = YES;
         self.title = title;
         self.totalSeconds = seconds;
         [self setUp];
     }
     return self;
 }
+
 
 - (void)setUp{
     [self setTitle:self.title forState:UIControlStateNormal];
@@ -42,13 +56,19 @@
 }
 
 - (void)buttonAction:(UIButton *)button{
-    [self destroyTimer];
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countdown) userInfo:nil repeats:YES];
-    self.num = self.totalSeconds;
+    if (self.isAuto){//自动开始
+       [self startCountdown];
+    }
     //代理方法
     if ([self.delegate respondsToSelector:@selector(sendCodeButtonClick)]){
         [self.delegate sendCodeButtonClick];
     }
+}
+
+- (void)startCountdown{
+    [self destroyTimer];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countdown) userInfo:nil repeats:YES];
+    self.num = self.totalSeconds;
 }
 
 //倒计时

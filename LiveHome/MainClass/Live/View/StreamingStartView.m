@@ -63,9 +63,10 @@
     _closeBtn = [self creatImageButtonWithImageStr:@"s_close_17" andTitle:@"" andType:StrStartViewBtnTypeClose];
     
     _horizontalBtn = [self creatTopButtonWithImageStr:@"s_hor_48" highlightImage:@"s_hor_pre_48" andTitle:@"横屏" andType:StrStartViewBtnTypeHorizontal andSpace:10];
-    _horizontalBtn.selected = YES;
+    
     _verticalBtn = [self creatTopButtonWithImageStr:@"s_ver_48" highlightImage:@"s_ver_pre_48" andTitle:@"竖屏" andType:StrStartViewBtnTypeVertical andSpace:4];
-   
+    _verticalBtn.selected = YES;
+    
     _noticeLabel = [[UILabel alloc] init];
     _noticeLabel.font = [UIFont systemFontOfSize:18];;
     _noticeLabel.text = @"— 会显示在开播推送消息中 —";

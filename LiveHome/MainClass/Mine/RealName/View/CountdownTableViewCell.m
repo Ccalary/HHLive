@@ -12,6 +12,7 @@
 
 @interface CountdownTableViewCell()<SendCodeButtonDelegate>
 @property (nonatomic, strong) UIView *holdView;
+@property (nonatomic, strong) SendCodeButton *codeButton;
 @end
 
 @implementation CountdownTableViewCell
@@ -94,10 +95,10 @@
         make.left.equalTo(self.holdView);
     }];
     
-    SendCodeButton *button = [[SendCodeButton alloc] initWithTitle:@"获取验证码" seconds:0];
-    button.delegate = self;
-    [self.holdView addSubview:button];
-    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+    _codeButton = [[SendCodeButton alloc] initManualWithTitle:@"获取验证码" seconds:60];
+    _codeButton.delegate = self;
+    [self.holdView addSubview:_codeButton];
+    [_codeButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(5);
         make.right.offset(-5);
         make.centerY.equalTo(self.holdView);
@@ -125,5 +126,10 @@
     if (self.block){
         self.block();
     }
+}
+
+//开始倒计时
+- (void)codeCountdownStart{
+    [self.codeButton startCountdown];
 }
 @end

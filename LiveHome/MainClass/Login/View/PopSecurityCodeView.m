@@ -28,12 +28,12 @@
         make.top.offset(25*UIRate);
     }];
     
-    UITextField *textField = [[UITextField alloc] init];
-    textField.placeholder = @"请输入图形验证码";
-    textField.font = FONT_SYSTEM(15);
-    textField.textColor = [UIColor fontColorBlack];
-    [self addSubview:textField];
-    [textField mas_makeConstraints:^(MASConstraintMaker *make) {
+    _textField = [[UITextField alloc] init];
+    _textField.placeholder = @"请输入图形验证码";
+    _textField.font = FONT_SYSTEM(15);
+    _textField.textColor = [UIColor fontColorBlack];
+    [self addSubview:_textField];
+    [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(25*UIRate);
         make.width.mas_equalTo(150*UIRate);
         make.height.mas_equalTo(20*UIRate);
@@ -45,26 +45,33 @@
     [self addSubview:line];
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(toplabel);
-        make.top.equalTo(textField.mas_bottom).offset(2);
+        make.top.equalTo(_textField.mas_bottom).offset(2);
         make.width.mas_equalTo(190*UIRate);
         make.height.mas_equalTo(2);
     }];
     
-    UIImageView *codeImageView = [[UIImageView alloc] init];
-    codeImageView.backgroundColor = [UIColor grayColor];
-    [self addSubview:codeImageView];
-    [codeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    _codeImageView = [[UIImageView alloc] init];
+    [self addSubview:_codeImageView];
+    [_codeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(90*UIRate);
         make.height.mas_equalTo(30*UIRate);
         make.left.equalTo(line.mas_right).offset(2);
         make.bottom.equalTo(line);
     }];
     
+    UIButton *codeBtn = [[UIButton alloc] init];
+    [codeBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    codeBtn.tag = PopSecurityCodeViewBtnCode;
+    [self addSubview:codeBtn];
+    [codeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(_codeImageView);
+    }];
+    
     UIButton *submitButton = [[UIButton alloc] init];
     [submitButton setTitle:@"提交" forState:UIControlStateNormal];
     submitButton.titleLabel.font = FONT_SYSTEM(15);
     [submitButton setTitleColor:[UIColor themeColor] forState:UIControlStateNormal];
-    submitButton.tag = 1000;
+    submitButton.tag = PopSecurityCodeViewBtnSubmit;
     [submitButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:submitButton];
     [submitButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -78,7 +85,7 @@
     [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
     cancelButton.titleLabel.font = FONT_SYSTEM(15);
     [cancelButton setTitleColor:[UIColor fontColorLightGray] forState:UIControlStateNormal];
-    cancelButton.tag = 2000;
+    cancelButton.tag = PopSecurityCodeViewBtnCancel;
     [cancelButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:cancelButton];
     [cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -88,10 +95,10 @@
     }];
 }
 
-- (void)buttonAction:(UIButton *)button{
-    BOOL isSubmit = (button.tag == 1000) ? YES : NO;
-    if (self.block){
-        self.block(isSubmit);
+- (void)buttonAction:(UIButton *)button
+{
+    if ([self.delegate respondsToSelector:@selector(securityCodeBtnAction:)]){
+        [self.delegate securityCodeBtnAction:button.tag];
     }
 }
 @end

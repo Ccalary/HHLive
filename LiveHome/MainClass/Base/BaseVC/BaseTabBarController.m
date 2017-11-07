@@ -13,6 +13,9 @@
 #import "MyUseViewController.h"
 #import "StreamingViewController.h"
 #import "MineViewController.h"
+#import "SettingViewModel.h"
+#import "StreamingViewModel.h"
+#import "MessageViewController.h"
 
 @interface BaseTabBarController ()<BaseTabbarDelegate>
 
@@ -42,7 +45,7 @@
     
     [self addChildrenViewController:[[OldVideosVC alloc] init] andTitle:@"历史" andImageName:@"tab_history" andSelectImage:@"tab_history_pre"];
      [self addChildrenViewController:[[MyUseViewController alloc] init] andTitle:@"应用" andImageName:@"tab_use" andSelectImage:@"tab_use_pre"];
-     [self addChildrenViewController:[[OldVideosVC alloc] init] andTitle:@"首页" andImageName:@"tab_msg" andSelectImage:@"tab_msg_pre"];
+     [self addChildrenViewController:[[MessageViewController alloc] init] andTitle:@"消息" andImageName:@"tab_msg" andSelectImage:@"tab_msg_pre"];
     [self addChildrenViewController:[[MineViewController alloc] init] andTitle:@"我" andImageName:@"tab_mine" andSelectImage:@"tab_mine_pre"];
 }
 
@@ -58,7 +61,22 @@
 
 - (void)baseTabbarClickButtonAction:(BaseTabbar *)tabBar{
     
+    SettingViewModel *model = [[SettingViewModel alloc] init];
+    model.url = @"rtmp://push.o2o.com.cn/find/3306388461?token=91a1dae67a18c960d742b58be81559baeb9bd482b8d3ce52022fc4c3af324117&expire=2017-11-09T10:38:43Z";
+    model.direction = DirectionPortrait;
+    
+    StreamingViewModel *vm = [[StreamingViewModel alloc] initWithSettingViewModel:model];
+    
+//    StreamingLandscapeViewController *vc = [[StreamingLandscapeViewController alloc] init];
+//    vc.model = vm;
+//    vc.isScreenVertical = NO;
+//    vc.targetId = targetId;
+//    vc.conversationType = ConversationType_CHATROOM;
+//    [self.navigationController pushViewController:vc animated:NO];
+    
+    
     StreamingViewController *vc = [[StreamingViewController alloc] init];
+    vc.model = vm;
     BaseNavigationController *baseNav = [[BaseNavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:baseNav animated:YES completion:nil];
 }

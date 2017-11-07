@@ -10,7 +10,8 @@
 #import "MineTableViewCell.h"
 #import "VoteViewController.h"
 #import "SignInViewController.h"
-#import "StreamingViewController.h"
+#import <RongIMLib/RongIMLib.h>
+#import "RCDLiveChatRoomViewController.h"
 
 @interface MyUseViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -88,7 +89,16 @@
     switch (indexPath.section) {
         case 0://礼物
         {
-             [self.navigationController pushViewController:[[StreamingViewController alloc] init] animated:YES];
+            RCUserInfo *user = [[RCUserInfo alloc]init];
+            user.userId = @"1";
+            user.portraitUri = @"";
+            user.name = @"夜空中最亮的星 ";
+            [RCIMClient sharedRCIMClient].currentUserInfo = user;
+            RCDLiveChatRoomViewController *chatRoomVC = [[RCDLiveChatRoomViewController alloc]init];
+            chatRoomVC.conversationType = ConversationType_CHATROOM;
+            chatRoomVC.targetId = @"ChatRoom01";
+            chatRoomVC.isScreenVertical = YES;
+            [self.navigationController pushViewController:chatRoomVC animated:NO];
         }
             break;
         case 1://投票

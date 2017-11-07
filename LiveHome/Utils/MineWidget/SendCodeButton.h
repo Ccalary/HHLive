@@ -13,6 +13,7 @@
 
 @interface SendCodeButton : UIButton
 @property (nonatomic, weak) id<SendCodeButtonDelegate> delegate;
+
 /**
  初始化 (自动布局使用)
 
@@ -24,6 +25,15 @@
 
 
 /**
+ 初始化 (自动布局使用), 手动调用开始
+ 
+ @param title 按钮标题
+ @param seconds 总倒计时时间
+ @return 实例
+ */
+- (instancetype)initManualWithTitle:(NSString *)title seconds:(int)seconds;
+
+/**
  常规初始化
 
  @param frame 布局
@@ -32,4 +42,7 @@
  @return 实例
  */
 - (instancetype)initWithFrame:(CGRect)frame title:(NSString *)title seconds:(int)seconds;
+
+//开始
+- (void)startCountdown;
 @end

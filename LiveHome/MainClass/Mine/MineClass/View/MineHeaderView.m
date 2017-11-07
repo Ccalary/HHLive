@@ -37,7 +37,7 @@
     
     UIView *headerBgView = [[UIView alloc] init];
     headerBgView.backgroundColor = [UIColor whiteColor];
-    headerBgView.layer.cornerRadius = 45*UIRate;
+    headerBgView.layer.cornerRadius = 30*UIRate;
     [self addSubview:headerBgView];
     [headerBgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.mas_equalTo(60*UIRate);

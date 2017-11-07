@@ -10,11 +10,13 @@
 #import "CountdownTableViewCell.h"
 #import "PopSecurityCodeView.h"
 #import "CNPPopupController.h"
-//H 测试
-#import "LoginViewController.h"
-#import "BaseNavigationController.h"
+#import "HttpUtility.h"
+#import "PublicModel_NSSring.h"
+#import "LHConnect.h"
 
-@interface PasswordViewController ()<UITableViewDelegate, UITableViewDataSource,UIGestureRecognizerDelegate>
+#define Cell_Tag  6666
+
+@interface PasswordViewController ()<UITableViewDelegate, UITableViewDataSource,UIGestureRecognizerDelegate, PopSecurityCodeViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic, strong) NSMutableArray *resultArray;
@@ -22,6 +24,8 @@
 @property (nonatomic, assign) PasswordVCType type;
 @property (nonatomic, strong) CNPPopupController *popupController;
 @property (nonatomic, strong) PopSecurityCodeView *codeView;
+@property (nonatomic, strong) NSString *imageUrl;
+@property (nonatomic, strong) NSString *tempCode;
 @end
 
 @implementation PasswordViewController
@@ -96,13 +100,7 @@
 - (PopSecurityCodeView *)codeView{
     if (!_codeView){
         _codeView = [[PopSecurityCodeView alloc] initWithFrame:CGRectMake(0, 0, 330*UIRate, 160*UIRate)];
-        __weak typeof (self) weakSelf = self;
-        _codeView.block = ^(BOOL isSubmit) {
-            [weakSelf.popupController dismissPopupControllerAnimated:YES];
-            if (isSubmit){
-                //网络请求
-            }
-        };
+        _codeView.delegate = self;
     }
     return _codeView;
 }
@@ -135,11 +133,20 @@
         case 0:
         {
             cell.textField.keyboardType = UIKeyboardTypeNumberPad;
-            //倒计时按钮点击
+            [cell.textField becomeFirstResponder];
+            cell.tag = Cell_Tag;//特殊的tag标记
+            //验证码按钮点击
             __weak typeof (self) weakSelf = self;
             cell.block = ^{
-                weakSelf.popupController = [[CNPPopupController alloc] initWithContents:@[weakSelf.codeView]];
-                [weakSelf.popupController presentPopupControllerAnimated:YES];
+                NSString *phoneNum = weakSelf.resultArray.firstObject;
+                if (phoneNum.length != 11){
+                    [LCProgressHUD showFailure:@"请输入11位手机号码"];
+                    return;
+                }
+                self.popupController = [[CNPPopupController alloc] initWithContents:@[self.codeView]];
+                [self.popupController presentPopupControllerAnimated:YES];
+                [self.codeView.textField becomeFirstResponder];
+                [weakSelf requestCodePictureWith:phoneNum];
             };
             [cell countdownViewHidden:NO];
         }
@@ -176,6 +183,27 @@
     return nil;
 }
 
+#pragma mark - PopSecurityCodeViewDelegate
+- (void)securityCodeBtnAction:(PopSecurityCodeViewBtnType)type{
+    switch (type) {
+        case PopSecurityCodeViewBtnCode://更换验证码
+            [self requestCodePictureWith:self.resultArray.firstObject];
+            break;
+        case PopSecurityCodeViewBtnSubmit://提交
+            [self requestSmsCode];
+            break;
+        case PopSecurityCodeViewBtnCancel://取消
+            [self hiddenCodeView];
+            break;
+    }
+}
+
+- (void)hiddenCodeView{
+    [self.codeView endEditing:YES];
+    self.codeView.textField.text = @"";
+    [self.popupController dismissPopupControllerAnimated:YES];
+}
+
 #pragma mark - Action
 //清除和隐藏工作在cell中处理了
 - (void)clearBtnAction:(UIButton *)button{
@@ -196,11 +224,82 @@
     [self.view endEditing:YES];
 }
 
-//提交
-- (void)buttonAction{
-    LoginViewController *loginVC = [[LoginViewController alloc] init];
-    BaseNavigationController *baseNav = [[BaseNavigationController alloc] initWithRootViewController:loginVC];
-    [self presentViewController:baseNav animated:YES completion:nil];
+#pragma mark - 网络
+//下载验证码图片
+-(void)requestCodePictureWith:(NSString *)phoneNum
+{
+    _imageUrl = [NSString stringWithFormat:@"http://findapi.o2o.com.cn:8080/%@?mobile=%@",ValidImage,phoneNum];
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:_imageUrl]];
+    UIImage *image = [UIImage imageWithData:data];
+    self.codeView.codeImageView.image = image;
 }
 
+//请求短信
+- (void)requestSmsCode{
+    [LCProgressHUD showKeyWindowLoading:@"加载中..."];
+    NSString *phoneNum = self.resultArray.firstObject;
+    NSString *code = self.codeView.textField.text;
+    if (code.length == 0) {
+        [LCProgressHUD showKeyWindowFailure:@"请输入验证码"];
+        return;
+    }
+    NSMutableDictionary *parma = [NSMutableDictionary dictionary];
+    [parma setValue:phoneNum forKey:@"mobile"];
+    [parma setValue:code forKey:@"code"];
+    
+    [LHConnect postSendSms:parma loading:nil success:^(ApiResultData * _Nullable data) {
+        [LCProgressHUD hide];
+        
+        PublicModel_NSSring *model = [PublicModel_NSSring mj_objectWithKeyValues:data];
+        self.tempCode = model.data;
+        //开始倒计时
+        CountdownTableViewCell *cell = (CountdownTableViewCell *)[self.view viewWithTag:Cell_Tag];
+        [cell codeCountdownStart];
+        
+        [self hiddenCodeView];
+    } failure:^(ApiResultData * _Nullable data) {
+    }];
+}
+
+//提交
+- (void)buttonAction{
+    NSString *phoneNum = self.resultArray.firstObject;
+    NSString *code = self.resultArray[1];
+    NSString *psd = self.resultArray.lastObject;
+    if (phoneNum.length != 11) {
+        [LCProgressHUD showFailure:@"请输入11位手机号码"];
+        return;
+    }
+    if (code.length == 0){
+        [LCProgressHUD showFailure:@"请输入验证码"];
+        return;
+    }
+    if (psd.length < 6){
+        [LCProgressHUD showFailure:@"请输入6位以上密码"];
+        return;
+    }
+    [self.view endEditing:YES];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:phoneNum forKey:@"mobile"];
+    [params setValue:self.tempCode forKey:@"tempcode"];
+    [params setValue:code forKey:@"code"];
+    [params setValue:psd forKey:@"password"];
+
+    if (self.type == PasswordVCTypeRegister){
+        [LHConnect postRegister:params loading:@"注册中..." success:^(ApiResultData * _Nullable data) {
+            [LCProgressHUD showKeyWindowSuccess:@"注册成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+        } failure:^(ApiResultData * _Nullable data) {
+            
+        }];
+    }else if (self.type == PasswordVCTypeForgotPsd){
+        [LHConnect postForgetPsd:params loading:@"请求中..." success:^(ApiResultData * _Nullable data) {
+            [LCProgressHUD showKeyWindowSuccess:@"更改成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+        } failure:^(ApiResultData * _Nullable data) {
+            
+        }];
+    }
+}
 @end

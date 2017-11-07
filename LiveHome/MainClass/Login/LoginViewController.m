@@ -8,9 +8,11 @@
 
 #import "LoginViewController.h"
 #import "PasswordViewController.h"
+#import "LHConnect.h"
 
 @interface LoginViewController ()
-
+@property (nonatomic, strong) UITextField *nameTextField;
+@property (nonatomic, strong) UITextField *psdTextField;
 @end
 
 @implementation LoginViewController
@@ -53,13 +55,13 @@
         make.left.offset(45*UIRate);
     }];
     
-    UITextField *nameTextField = [[UITextField alloc] init];
-    nameTextField.font = FONT_SYSTEM(15);
-    nameTextField.textColor = [UIColor fontColorBlack];
-    nameTextField.placeholder = @"请输入手机号码";
-    nameTextField.keyboardType = UIKeyboardTypeNumberPad;
-    [self.view addSubview:nameTextField];
-    [nameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+    _nameTextField = [[UITextField alloc] init];
+    _nameTextField.font = FONT_SYSTEM(15);
+    _nameTextField.textColor = [UIColor fontColorBlack];
+    _nameTextField.placeholder = @"请输入手机号码";
+    _nameTextField.keyboardType = UIKeyboardTypeNumberPad;
+    [self.view addSubview:_nameTextField];
+    [_nameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(nameImageView.mas_right).offset(20*UIRate);
         make.width.mas_equalTo(180*UIRate);
         make.centerY.equalTo(nameImageView);
@@ -70,9 +72,9 @@
     nameLine.backgroundColor = [UIColor themeColor];
     [self.view addSubview:nameLine];
     [nameLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(nameTextField).offset(-5*UIRate);
+        make.left.equalTo(_nameTextField).offset(-5*UIRate);
         make.right.offset(-45*UIRate);
-        make.bottom.equalTo(nameTextField).offset(2*UIRate);
+        make.bottom.equalTo(_nameTextField).offset(2*UIRate);
         make.height.mas_equalTo(1);
     }];
     
@@ -85,15 +87,15 @@
         make.left.equalTo(nameImageView);
     }];
     
-    UITextField *psdTextField = [[UITextField alloc] init];
-    psdTextField.font = FONT_SYSTEM(15);
-    psdTextField.secureTextEntry = YES;
-    psdTextField.textColor = [UIColor fontColorBlack];
-    psdTextField.placeholder = @"请输入密码";
-    [self.view addSubview:psdTextField];
-    [psdTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(nameTextField);
-        make.size.equalTo(nameTextField);
+    _psdTextField = [[UITextField alloc] init];
+    _psdTextField.font = FONT_SYSTEM(15);
+    _psdTextField.secureTextEntry = YES;
+    _psdTextField.textColor = [UIColor fontColorBlack];
+    _psdTextField.placeholder = @"请输入密码";
+    [self.view addSubview:_psdTextField];
+    [_psdTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_nameTextField);
+        make.size.equalTo(_nameTextField);
         make.centerY.equalTo(psdImageView);
     }];
     
@@ -101,9 +103,9 @@
     psdLine.backgroundColor = [UIColor themeColor];
     [self.view addSubview:psdLine];
     [psdLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(psdTextField).offset(-5*UIRate);
+        make.left.equalTo(_psdTextField).offset(-5*UIRate);
         make.right.equalTo(nameLine);
-        make.bottom.equalTo(psdTextField).offset(2*UIRate);
+        make.bottom.equalTo(_psdTextField).offset(2*UIRate);
         make.height.equalTo(nameLine);
     }];
     
@@ -157,7 +159,7 @@
     [self.view endEditing:YES];
     switch (button.tag) {
         case 1000://登录
-            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+            [self requestLogin];
             break;
         case 1001://注册
             [self.navigationController pushViewController:[[PasswordViewController alloc] initWithType:PasswordVCTypeRegister] animated:YES];
@@ -168,6 +170,29 @@
         default:
             break;
     }
+}
+
+#pragma mark - 网络
+- (void)requestLogin{
+    NSString *phoneNum = self.nameTextField.text;
+    NSString *psd = self.psdTextField.text;
+    if (phoneNum.length != 11) {
+        [LCProgressHUD showFailure:@"请输入11位手机号码"];
+        return;
+    }
+    if (psd.length < 6){
+        [LCProgressHUD showFailure:@"请输入6位以上密码"];
+        return;
+    }
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:phoneNum forKey:@"m"];
+    [params setValue:psd forKey:@"p"];
+    [LHConnect postLogin:params loading:@"登录中..." success:^(ApiResultData * _Nullable data) {
+         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+         [LCProgressHUD showKeyWindowSuccess:@"登录成功"];
+    } failure:^(ApiResultData * _Nullable data) {
+        
+    }];
 }
 
 @end
