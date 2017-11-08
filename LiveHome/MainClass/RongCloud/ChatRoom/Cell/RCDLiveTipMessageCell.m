@@ -43,7 +43,7 @@
     }else if ([content isMemberOfClass:[RCTextMessage class]]){
         RCTextMessage *notification = (RCTextMessage *)content;
         NSString *localizedMessage = [RCDLiveKitUtility formatMessage:notification];
-        NSString *name=@"";
+        NSString *name=@"游客:";
         if (content.senderUserInfo) {
             name = [NSString stringWithFormat:@"%@:",content.senderUserInfo.name];
         }

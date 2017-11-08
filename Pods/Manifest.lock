@@ -32,6 +32,7 @@ PODS:
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
   - UICountingLabel (1.2.0)
+  - UITextView+Placeholder (1.2.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
@@ -47,6 +48,7 @@ DEPENDENCIES:
   - RongCloudIM/IMKit (~> 2.8.3)
   - RongCloudIM/IMLib (~> 2.8.3)
   - SDWebImage (~> 4.0)
+  - UITextView+Placeholder (~> 1.2.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -62,7 +64,8 @@ SPEC CHECKSUMS:
   RongCloudIM: 04334f9285db8bc5e2f69bda0e3ce5431a6bec72
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
+  UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
-PODFILE CHECKSUM: f6c72173e5f0f45b1ced77c4f6b1263511126333
+PODFILE CHECKSUM: 567405ba6629cbb1c5acce4966f5cb089144eeec
 
 COCOAPODS: 1.2.1

@@ -166,11 +166,15 @@
 		FED1843B1FB02D4100937E07 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = FED184311FB02D4100937E07 /* GTMBase64.m */; };
 		FED1843C1FB02D4100937E07 /* HttpUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = FED184341FB02D4100937E07 /* HttpUtility.m */; };
 		FED1843F1FB0419500937E07 /* LHConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1843E1FB0419500937E07 /* LHConnect.m */; };
+		FED35CD61FB2EB0900877D8A /* ChangePhoneNumVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FED35CD51FB2EB0900877D8A /* ChangePhoneNumVC.m */; };
+		FED35CD91FB2F48B00877D8A /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FED35CD81FB2F48B00877D8A /* FeedbackViewController.m */; };
 		FEE97B351FA30B8900AB2767 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE97B331FA30B8900AB2767 /* AppDelegate.m */; };
 		FEE97B441FA311CF00AB2767 /* UIColor+App.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE97B3F1FA311CF00AB2767 /* UIColor+App.m */; };
 		FEE97B451FA311CF00AB2767 /* NSArray+Dlog.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE97B411FA311CF00AB2767 /* NSArray+Dlog.m */; };
 		FEE97B461FA311CF00AB2767 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE97B431FA311CF00AB2767 /* UIView+Extension.m */; };
 		FEE97B4B1FA3207200AB2767 /* UserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE97B4A1FA3207200AB2767 /* UserHelper.m */; };
+		FEFB45911FB2D58B0009B886 /* WithdrawingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEFB45901FB2D58B0009B886 /* WithdrawingVC.m */; };
+		FEFB45951FB2DD1B0009B886 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEFB45941FB2DD1A0009B886 /* SettingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -481,6 +485,10 @@
 		FED184341FB02D4100937E07 /* HttpUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpUtility.m; sourceTree = "<group>"; };
 		FED1843D1FB0419500937E07 /* LHConnect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHConnect.h; sourceTree = "<group>"; };
 		FED1843E1FB0419500937E07 /* LHConnect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHConnect.m; sourceTree = "<group>"; };
+		FED35CD41FB2EB0900877D8A /* ChangePhoneNumVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangePhoneNumVC.h; sourceTree = "<group>"; };
+		FED35CD51FB2EB0900877D8A /* ChangePhoneNumVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangePhoneNumVC.m; sourceTree = "<group>"; };
+		FED35CD71FB2F48B00877D8A /* FeedbackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
+		FED35CD81FB2F48B00877D8A /* FeedbackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
 		FEE97B331FA30B8900AB2767 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FEE97B341FA30B8900AB2767 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FEE97B3E1FA311CF00AB2767 /* UIColor+App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+App.h"; sourceTree = "<group>"; };
@@ -493,6 +501,10 @@
 		FEE97B4A1FA3207200AB2767 /* UserHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserHelper.m; sourceTree = "<group>"; };
 		FEE97B4D1FA3217200AB2767 /* NetUrlMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetUrlMacro.h; sourceTree = "<group>"; };
 		FEE97B4E1FA3218600AB2767 /* NotificationMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationMacro.h; sourceTree = "<group>"; };
+		FEFB458F1FB2D58B0009B886 /* WithdrawingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawingVC.h; sourceTree = "<group>"; };
+		FEFB45901FB2D58B0009B886 /* WithdrawingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawingVC.m; sourceTree = "<group>"; };
+		FEFB45931FB2DD1A0009B886 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		FEFB45941FB2DD1A0009B886 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -902,8 +914,9 @@
 		FE4A21711FB1720700C1A55A /* Mine */ = {
 			isa = PBXGroup;
 			children = (
-				FE4A21721FB1720700C1A55A /* Contribute */,
 				FE4A21771FB1720700C1A55A /* MineClass */,
+				FEFB45921FB2DD0E0009B886 /* Setting */,
+				FE4A21721FB1720700C1A55A /* Contribute */,
 				FE4A217F1FB1720700C1A55A /* RealName */,
 				FE4A21871FB1720700C1A55A /* Statistics */,
 				FE4A21951FB1720700C1A55A /* UserInfo */,
@@ -926,9 +939,9 @@
 		FE4A21771FB1720700C1A55A /* MineClass */ = {
 			isa = PBXGroup;
 			children = (
+				FE4A217A1FB1720700C1A55A /* View */,
 				FE4A21781FB1720700C1A55A /* MineViewController.h */,
 				FE4A21791FB1720700C1A55A /* MineViewController.m */,
-				FE4A217A1FB1720700C1A55A /* View */,
 			);
 			path = MineClass;
 			sourceTree = "<group>";
@@ -1014,18 +1027,20 @@
 		FE4A219B1FB1720700C1A55A /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				FE4A219E1FB1720700C1A55A /* View */,
+				FE4A21AB1FB1720700C1A55A /* WithdrawView */,
+				FE4A21A91FB1720700C1A55A /* WalletViewController.h */,
+				FE4A21AA1FB1720700C1A55A /* WalletViewController.m */,
+				FE4A21B21FB1720700C1A55A /* WithdrawViewController.h */,
+				FE4A21B31FB1720700C1A55A /* WithdrawViewController.m */,
+				FEFB458F1FB2D58B0009B886 /* WithdrawingVC.h */,
+				FEFB45901FB2D58B0009B886 /* WithdrawingVC.m */,
 				FE4A219C1FB1720700C1A55A /* BillViewController.h */,
 				FE4A219D1FB1720700C1A55A /* BillViewController.m */,
-				FE4A219E1FB1720700C1A55A /* View */,
 				FE4A21A51FB1720700C1A55A /* WalletAddCardVC.h */,
 				FE4A21A61FB1720700C1A55A /* WalletAddCardVC.m */,
 				FE4A21A71FB1720700C1A55A /* WalletCardsVC.h */,
 				FE4A21A81FB1720700C1A55A /* WalletCardsVC.m */,
-				FE4A21A91FB1720700C1A55A /* WalletViewController.h */,
-				FE4A21AA1FB1720700C1A55A /* WalletViewController.m */,
-				FE4A21AB1FB1720700C1A55A /* WithdrawView */,
-				FE4A21B21FB1720700C1A55A /* WithdrawViewController.h */,
-				FE4A21B31FB1720700C1A55A /* WithdrawViewController.m */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -1060,17 +1075,17 @@
 			isa = PBXGroup;
 			children = (
 				FE4A22501FB176BB00C1A55A /* Danmaku */,
-				FE4A224C1FB1748F00C1A55A /* RCDLiveKitCommonDefine.h */,
-				FE4A224A1FB1747400C1A55A /* RCDLiveChatRoomViewController.h */,
-				FE4A22491FB1747400C1A55A /* RCDLiveChatRoomViewController.m */,
-				FEA0DD6D1FB18E01003C22A9 /* RCDLiveChatListView.h */,
-				FEA0DD6E1FB18E01003C22A9 /* RCDLiveChatListView.m */,
 				FE4A22201FB173BE00C1A55A /* ChatRoom */,
 				FE4A21FF1FB1736B00C1A55A /* CustomViews */,
 				FE4A21FD1FB172A400C1A55A /* RCDLiveKitUtility.h */,
 				FE4A21FC1FB172A400C1A55A /* RCDLiveKitUtility.m */,
 				FE4A21F91FB1726200C1A55A /* RCDLive.h */,
 				FE4A21FA1FB1726200C1A55A /* RCDLive.m */,
+				FE4A224C1FB1748F00C1A55A /* RCDLiveKitCommonDefine.h */,
+				FE4A224A1FB1747400C1A55A /* RCDLiveChatRoomViewController.h */,
+				FE4A22491FB1747400C1A55A /* RCDLiveChatRoomViewController.m */,
+				FEA0DD6D1FB18E01003C22A9 /* RCDLiveChatListView.h */,
+				FEA0DD6E1FB18E01003C22A9 /* RCDLiveChatListView.m */,
 			);
 			path = RongCloud;
 			sourceTree = "<group>";
@@ -1493,6 +1508,19 @@
 			path = LiveHelper;
 			sourceTree = "<group>";
 		};
+		FEFB45921FB2DD0E0009B886 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				FEFB45931FB2DD1A0009B886 /* SettingViewController.h */,
+				FEFB45941FB2DD1A0009B886 /* SettingViewController.m */,
+				FED35CD41FB2EB0900877D8A /* ChangePhoneNumVC.h */,
+				FED35CD51FB2EB0900877D8A /* ChangePhoneNumVC.m */,
+				FED35CD71FB2F48B00877D8A /* FeedbackViewController.h */,
+				FED35CD81FB2F48B00877D8A /* FeedbackViewController.m */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1639,6 +1667,7 @@
 				FE4A22421FB1742A00C1A55A /* RCDLiveMessageCell.m in Sources */,
 				FEACD9221FA81D9500503C10 /* UIView+Layout.m in Sources */,
 				FE4A21F41FB1720700C1A55A /* WithdrawTableViewCell2.m in Sources */,
+				FEFB45911FB2D58B0009B886 /* WithdrawingVC.m in Sources */,
 				FEE97B441FA311CF00AB2767 /* UIColor+App.m in Sources */,
 				FE4A21C31FB1720700C1A55A /* BaseTabbar.m in Sources */,
 				FEACD9581FA8902100503C10 /* UIButton+ImageTitleSpacing.m in Sources */,
@@ -1681,6 +1710,7 @@
 				FE4A21E71FB1720700C1A55A /* StatisticsSelectView.m in Sources */,
 				FE4A225A1FB176C900C1A55A /* RCDDanmakuInfo.m in Sources */,
 				FE4A224B1FB1747400C1A55A /* RCDLiveChatRoomViewController.m in Sources */,
+				FED35CD61FB2EB0900877D8A /* ChangePhoneNumVC.m in Sources */,
 				FE4A21BD1FB1720700C1A55A /* PublicModel_Array.m in Sources */,
 				FE4A21D71FB1720700C1A55A /* LoginViewController.m in Sources */,
 				FE4A21E41FB1720700C1A55A /* StatciCollectionViewCell.m in Sources */,
@@ -1741,11 +1771,13 @@
 				FE4A22191FB1736B00C1A55A /* RCDLiveInputView.m in Sources */,
 				FE4A225B1FB176C900C1A55A /* RCDDanmaku.m in Sources */,
 				FE4A21CF1FB1720700C1A55A /* StreamingModel.m in Sources */,
+				FED35CD91FB2F48B00877D8A /* FeedbackViewController.m in Sources */,
 				FE4A21E01FB1720700C1A55A /* RealNameVC.m in Sources */,
 				FE4A21C91FB1720700C1A55A /* LabelNoticePopView.m in Sources */,
 				FE4A22171FB1736B00C1A55A /* RCDLiveEmojiPageControl.m in Sources */,
 				FEACD9171FA81D9500503C10 /* TZGifPhotoPreviewController.m in Sources */,
 				FE4D6ECF1FAEAFBB005441BE /* RunLabelView.m in Sources */,
+				FEFB45951FB2DD1B0009B886 /* SettingViewController.m in Sources */,
 				FED1843B1FB02D4100937E07 /* GTMBase64.m in Sources */,
 				FEA0DD721FB1B138003C22A9 /* StreamingEndView.m in Sources */,
 				FE4A21DD1FB1720700C1A55A /* MineViewController.m in Sources */,

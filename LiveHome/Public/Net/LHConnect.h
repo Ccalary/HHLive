@@ -11,7 +11,13 @@
 
 @interface LHConnect : NSObject
 + (NSMutableDictionary *_Nullable)getBaseRequestParams;
-/***********************注册登录***************************/
+#pragma mark - 个人中心模块
+/**
+ * 反馈
+ */
++(void)postFeedback:(NSMutableDictionary *_Nullable) params loading:(NSString *_Nullable)text success:(void (^_Nullable)(ApiResultData * _Nullable data))success  failure:(void (^_Nullable)(ApiResultData * _Nullable data))failure;
+
+#pragma mark - /***********************注册登录***************************/
 /**
  * 登录
  */
@@ -31,4 +37,9 @@
  * 发送短信验证码
  */
 +(void)postSendSms:(NSMutableDictionary *_Nullable) params loading:(NSString *_Nullable)text success:(void (^_Nullable)(ApiResultData * _Nullable data))success  failure:(void (^_Nullable)(ApiResultData * _Nullable data))failure;
+
+/**
+ 更改手机号
+ */
++(void)postChangeMobile:(NSMutableDictionary *_Nullable) params loading:(NSString *_Nullable)text success:(void (^_Nullable)(ApiResultData * _Nullable data))success  failure:(void (^_Nullable)(ApiResultData * _Nullable data))failure;
 @end

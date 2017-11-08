@@ -14,7 +14,7 @@
 #import "UserInfoEditVC.h"
 #import "StatisticsViewController.h"
 #import "PasswordViewController.h"
-#import "LoginViewController.h"
+#import "SettingViewController.h"
 
 @interface MineViewController ()<UITableViewDelegate, UITableViewDataSource,MineHeaderViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -38,7 +38,6 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.translucent = NO;
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
@@ -131,13 +130,13 @@
         
     }else if (indexPath.section == 2){
         if (indexPath.row == 0){//设置
-            [self.navigationController pushViewController:[[PasswordViewController alloc] initWithType:PasswordVCTypeForgotPsd] animated:YES];
+            [self.navigationController pushViewController:[[SettingViewController alloc] init] animated:YES];
         }
     }
 }
 
 #pragma mark - MineHeaderViewDelegate
 - (void)mineHeaderViewBtnAction{
-    [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
+    [self.navigationController pushViewController:[[UserInfoEditVC alloc] init] animated:YES];
 }
 @end

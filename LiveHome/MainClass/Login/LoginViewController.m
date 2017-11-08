@@ -30,6 +30,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+
 }
 
 - (void)initView{
@@ -174,6 +175,7 @@
 
 #pragma mark - 网络
 - (void)requestLogin{
+
     NSString *phoneNum = self.nameTextField.text;
     NSString *psd = self.psdTextField.text;
     if (phoneNum.length != 11) {
@@ -184,10 +186,11 @@
         [LCProgressHUD showFailure:@"请输入6位以上密码"];
         return;
     }
+    [LCProgressHUD showKeyWindowLoading:@"登录中..."];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setValue:phoneNum forKey:@"m"];
     [params setValue:psd forKey:@"p"];
-    [LHConnect postLogin:params loading:@"登录中..." success:^(ApiResultData * _Nullable data) {
+    [LHConnect postLogin:params loading:nil success:^(ApiResultData * _Nullable data) {
          [self.navigationController dismissViewControllerAnimated:YES completion:nil];
          [LCProgressHUD showKeyWindowSuccess:@"登录成功"];
     } failure:^(ApiResultData * _Nullable data) {

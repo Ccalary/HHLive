@@ -523,9 +523,9 @@ static inline NSPUIImageType NSPUIImageTypeFromData(NSData *imageData)
                 {
                     //增加显示
                     if(data.code == 300){
-                       [LCProgressHUD showKeyWindowFailure:data.message];
+                       [LCProgressHUD showFailure:data.message];
                     }else {
-                        [LCProgressHUD showKeyWindowFailure:@"请求失败，请稍后再试"];
+                        [LCProgressHUD showFailure:@"请求失败，请稍后再试"];
                     }
                     failure(data);
                 }

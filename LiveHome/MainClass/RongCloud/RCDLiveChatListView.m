@@ -144,16 +144,14 @@ static NSString *const RCDLiveGiftMessageCellIndentifier = @"RCDLiveGiftMessageC
     customFlowLayout.sectionInset = UIEdgeInsetsMake(10.0f, 0.0f,5.0f, 0.0f);
     customFlowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     
-    self.conversationMessageCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:customFlowLayout];
+    self.conversationMessageCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) collectionViewLayout:customFlowLayout];
     [self.conversationMessageCollectionView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
 //    self.conversationMessageCollectionView.showsVerticalScrollIndicator = NO;
     self.conversationMessageCollectionView.alwaysBounceVertical = YES;
     self.conversationMessageCollectionView.dataSource = self;
     self.conversationMessageCollectionView.delegate = self;
     [self addSubview:self.conversationMessageCollectionView];
-    [self.conversationMessageCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self);
-    }];
+    
     self.collectionViewHeader = [[RCDLiveCollectionViewHeader alloc]
                                  initWithFrame:CGRectMake(0, -50, self.bounds.size.width, 40)];
     _collectionViewHeader.tag = 1999;
@@ -263,8 +261,6 @@ static NSString *const RCDLiveGiftMessageCellIndentifier = @"RCDLiveGiftMessageC
 
 /**
  *  未读消息View
- *
- *  @return 
  */
 - (UIView *)unreadButtonView {
     if (!_unreadButtonView) {
@@ -520,7 +516,6 @@ static NSString *const RCDLiveGiftMessageCellIndentifier = @"RCDLiveGiftMessageC
                                              message.messageId = -1;//插入消息时如果id是-1不判断是否存在
                                          }
                                          [__weakself appendAndDisplayMessage:message];
-//                                         [__weakself.inputBar clearInputView];
                                      });
                                  } error:^(RCErrorCode nErrorCode, long messageId) {
                                      [[RCIMClient sharedRCIMClient]deleteMessages:@[ @(messageId) ]];

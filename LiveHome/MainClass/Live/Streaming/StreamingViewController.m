@@ -16,6 +16,7 @@
 
 #import <VideoCore/VideoCore.h>
 #import "AppDelegate.h"
+#import <IQKeyboardManager/IQKeyboardManager.h>
 
 @interface StreamingViewController ()<VCSessionDelegate,StreamStartViewDelegate, StreamStreamingViewDelegate>
 
@@ -55,8 +56,15 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [IQKeyboardManager sharedManager].enable = NO;
+    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
+}
 - (AVCaptureVideoOrientation)cameraOrientation {
     if (self.isLandscape){
         return AVCaptureVideoOrientationLandscapeRight;
@@ -176,12 +184,15 @@
     }
 }
 
+//推流界面
 - (void)streamingViewBtnAction:(StreamStreamingViewBtnType)type{
     switch (type) {
         case StrStreamingViewBtnTypeClose://关闭
             self.popupController = [[CNPPopupController alloc] initWithContents:@[self.closePopView]];
             self.popupController.theme.backgroundColor = [UIColor clearColor];
             [self.popupController presentPopupControllerAnimated:YES];
+            break;
+        case StrStreamingViewBtnTypeChat://聊天
             break;
         case StrStreamingViewBtnTypeBeauty://美颜
         {

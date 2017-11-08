@@ -10,14 +10,21 @@
 #import "CountdownLabel.h"
 #import "StreamingTopView.h"
 #import "RCDLiveChatListView.h"
+#import "RCDLiveInputBar.h"
 #import <RongIMLib/RongIMLib.h>
 
-@interface StreamStreamingView()
+//输入框的高度
+#define MinHeight_InputView 50.0f
+
+@interface StreamStreamingView()<RCTKInputBarControlDelegate>
 @property (nonatomic, strong) UIButton *beautyBtn;
 @property (nonatomic, strong) CountdownLabel *countdownLabel;
 @property (nonatomic, strong) StreamingTopView *topView;
 @property (nonatomic, assign) CGFloat rate;
+@property (nonatomic, strong) UIView *contentView; //承载listView和InputBar
 @property (nonatomic, strong) RCDLiveChatListView *chatListView;
+//输入工具栏
+@property(nonatomic,strong) RCDLiveInputBar *inputBar;
 @end
 
 @implementation StreamStreamingView
@@ -31,23 +38,13 @@
             _rate = size.width/375.0;
         }
         [self initTopView];
+        [self initContenView];
         [self initBtnView];
         [self addSubview:self.countdownLabel];
-        
-        [self initChatListView];
     }
     return self;
 }
 
-- (void)initChatListView{
-    RCUserInfo *user = [[RCUserInfo alloc]init];
-    user.userId = @"1";
-    user.portraitUri = @"";
-    user.name = @"夜空中最亮的星 ";
-    [RCIMClient sharedRCIMClient].currentUserInfo = user;
-    self.chatListView = [[RCDLiveChatListView alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 250, 250, 200) andTargetId:@"ChatRoom01"];
-    [self addSubview:self.chatListView];
-}
 
 - (void)initTopView{
     self.topView = [[StreamingTopView alloc] initWithFrame:CGRectMake(0, 20, self.frame.size.width, 70*self.rate) andItemWidth:30*self.rate];
@@ -56,6 +53,41 @@
         make.right.offset(-35);
     }];
 }
+
+- (void)initContenView{
+    CGRect contentViewFrame = CGRectMake(0, self.bounds.size.height-237, self.bounds.size.width,237);
+    self.contentView.backgroundColor = [UIColor greenColor];
+    self.contentView = [[UIView alloc]initWithFrame:contentViewFrame];
+    [self addSubview:self.contentView];
+    
+    UITapGestureRecognizer *aTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(aTapAction:)];
+    [self addGestureRecognizer:aTap];
+    
+    RCUserInfo *user = [[RCUserInfo alloc]init];
+    user.userId = @"1";
+    user.portraitUri = @"";
+    user.name = @"夜空中最亮的星 ";
+    [RCIMClient sharedRCIMClient].currentUserInfo = user;
+    self.chatListView = [[RCDLiveChatListView alloc] initWithFrame:CGRectMake(0, 0, 240, self.contentView.bounds.size.height - 50) andTargetId:@"ChatRoom01"];
+    [self.contentView addSubview:self.chatListView];
+    //输入工具栏
+    self.inputBar = [[RCDLiveInputBar alloc]initWithFrame:CGRectMake(0, self.chatListView.bounds.size.height + 30, self.contentView.frame.size.width,MinHeight_InputView)];
+    self.inputBar.delegate = self;
+    self.inputBar.backgroundColor = [UIColor clearColor];
+    self.inputBar.hidden = YES;
+    [self.contentView addSubview:self.inputBar];
+}
+
+//倒计时
+- (CountdownLabel *)countdownLabel{
+    if (!_countdownLabel){
+        _countdownLabel = [[CountdownLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
+        _countdownLabel.center = self.center;
+        [_countdownLabel startCount];
+    }
+    return _countdownLabel;
+}
+
 //按钮
 - (void)initBtnView{
     
@@ -103,14 +135,7 @@
     }];
 }
 
-- (CountdownLabel *)countdownLabel{
-    if (!_countdownLabel){
-        _countdownLabel = [[CountdownLabel alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
-        _countdownLabel.center = self.center;
-        [_countdownLabel startCount];
-    }
-    return _countdownLabel;
-}
+
 
 
 //创建button
@@ -125,11 +150,34 @@
 
 #pragma mark - Action
 - (void)buttonAction:(UIButton *)button{
+    
+    switch (button.tag) {
+        case StrStreamingViewBtnTypeChat://信息
+        {
+            self.inputBar.hidden = NO;
+            [self.inputBar setInputBarStatus:RCDLiveBottomBarKeyboardStatus];
+        }
+            break;
+        case StrStreamingViewBtnTypeClose://关闭
+            [self setInputHidden];
+            break;
+        default:
+            break;
+    }
+    
     if ([self.delegate respondsToSelector:@selector(streamingViewBtnAction:)]){
         [self.delegate streamingViewBtnAction:button.tag];
     }
 }
 
+
+//点击键盘消失
+- (void)aTapAction:(UIGestureRecognizer *)gestureRecognizer{
+    if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        [self setInputHidden];
+    }
+}
+#pragma mark - 方法
 //根据开关状态更改图片
 - (void)showBeautyBtnImageWithIsOn:(BOOL)isOn{
     if (isOn){
@@ -137,5 +185,39 @@
     }else {
         [self.beautyBtn setImage:[UIImage imageNamed:@"s_beauty_n_32"] forState:UIControlStateNormal];
     }
+}
+
+//隐藏输入框
+- (void)setInputHidden{
+    [self.inputBar setInputBarStatus:RCDLiveBottomBarDefaultStatus];
+    self.inputBar.hidden = YES;
+}
+
+#pragma mark - 输入框代理事件
+- (void)onTouchSendButton:(NSString *)text{
+    RCTextMessage *rcTextMessage = [RCTextMessage messageWithContent:text];
+    [self.chatListView sendMessage:rcTextMessage pushContent:nil];
+    //清空输入框
+    [self.inputBar clearInputView];
+}
+
+- (void)onInputBarControlContentSizeChanged:(CGRect)frame withAnimationDuration:(CGFloat)duration andAnimationCurve:(UIViewAnimationCurve)curve{
+    
+    CGRect collectionViewRect = self.contentView.frame;
+
+    collectionViewRect.origin.y = self.bounds.size.height - frame.size.height - 237 + 50;
+    collectionViewRect.size.height = 237;
+    [UIView animateWithDuration:duration animations:^{
+        [UIView setAnimationCurve:curve];
+        [self.contentView setFrame:collectionViewRect];
+        [UIView commitAnimations];
+    }];
+    
+    CGRect inputbarRect = self.inputBar.frame;
+    inputbarRect.origin.y = self.contentView.frame.size.height - 50;
+    
+    [self.inputBar setFrame:inputbarRect];
+    [self bringSubviewToFront:self.inputBar];
+    [self.chatListView scrollToBottomAnimated:NO];
 }
 @end

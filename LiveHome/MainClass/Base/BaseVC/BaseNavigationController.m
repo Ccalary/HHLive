@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //设置了之后自动下沉navigationBar的高度
+    //设置了NO之后自动下沉navigationBar的高度
     self.navigationBar.translucent = NO;
     //改变左右Item的颜色
     self.navigationBar.tintColor = [UIColor whiteColor];

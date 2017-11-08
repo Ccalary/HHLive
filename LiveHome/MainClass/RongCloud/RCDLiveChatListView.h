@@ -39,4 +39,23 @@
 @property(nonatomic, assign) int defaultHistoryMessageCountOfChatRoom;
 
 - (instancetype)initWithFrame:(CGRect)frame andTargetId:(NSString *)targetId;
+
+/*!
+ 发送消息(除图片消息外的所有消息)
+ 
+ @param messageContent 消息的内容
+ @param pushContent    接收方离线时需要显示的远程推送内容
+ 
+ @discussion 当接收方离线并允许远程推送时，会收到远程推送。
+ 远程推送中包含两部分内容，一是pushContent，用于显示；二是pushData，用于携带不显示的数据。
+ 
+ SDK内置的消息类型，如果您将pushContent置为nil，会使用默认的推送格式进行远程推送。
+ 自定义类型的消息，需要您自己设置pushContent来定义推送内容，否则将不会进行远程推送。
+ 
+ 如果您需要设置发送的pushData，可以使用RCIM的发送消息接口。
+ */
+- (void)sendMessage:(RCMessageContent *)messageContent
+        pushContent:(NSString *)pushContent;
+
+- (void)scrollToBottomAnimated:(BOOL)animated;
 @end

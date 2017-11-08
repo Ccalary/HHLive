@@ -16,7 +16,19 @@
     return params;
 }
 
-/****************************注册登录*************************/
+#pragma mark - 个人中心模块
+/**
+ * 反馈
+ */
++(void)postFeedback:(NSMutableDictionary *_Nullable) params loading:(NSString *_Nullable)text success:(void (^_Nullable)(ApiResultData * _Nullable data))success  failure:(void (^_Nullable)(ApiResultData * _Nullable data))failure{
+    [[HttpUtility sharedInstance] POST:FeedBack loadingText:text parameters:params progress:nil success:^(ApiResultData * _Nullable data) {
+        success(data);
+    } failure:^(ApiResultData * _Nullable data) {
+        failure(data);
+    }];
+}
+
+#pragma mark - ****************************注册登录*************************
 /**
  * 登录
  */
@@ -63,4 +75,16 @@
                                }];
 }
 
+/**
+ 更改手机号
+ */
++(void)postChangeMobile:(NSMutableDictionary *_Nullable) params loading:(NSString *_Nullable)text success:(void (^_Nullable)(ApiResultData * _Nullable data))success  failure:(void (^_Nullable)(ApiResultData * _Nullable data))failure
+{
+    [[HttpUtility sharedInstance] POST:BangdingMobile loadingText:text parameters :params progress:nil
+                               success:^(ApiResultData * _Nullable data) {
+                                   success(data);
+                               }failure:^(ApiResultData * _Nullable data) {
+                                   failure(data);
+                               }];
+}
 @end

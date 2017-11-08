@@ -9,6 +9,7 @@
 #import "WalletViewController.h"
 #import "BillViewController.h"
 #import "WithdrawViewController.h"
+#import "WithdrawingVC.h"
 
 @interface WalletViewController ()
 @property (nonatomic, strong) UILabel *moneyLabel;
@@ -122,6 +123,8 @@
 
 //提现
 - (void)withdrawBtnAction{
-    [self.navigationController pushViewController:[[WithdrawViewController alloc] init] animated:YES];
+    [self.navigationController pushViewController:[[WithdrawingVC alloc] init] animated:YES];
+    
+//    [self.navigationController pushViewController:[[WithdrawViewController alloc] init] animated:YES];
 }
 @end

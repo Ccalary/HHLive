@@ -9,6 +9,10 @@
 #ifndef NetUrlMacro_h
 #define NetUrlMacro_h
 
+/******************个人中心******************/
+//意见反馈接口
+#define FeedBack @"/FeedBack"
+
 /****************登录注册模块*****************/
 //登录接口
 #define Login @"/Account/Login"
@@ -24,5 +28,8 @@
 
 //图片验证码接口
 #define ValidImage @"/Sms/ValidImage"
+
+//绑定手机接口(更换手机号)
+#define BangdingMobile @"/User/BangdingMobile"
 
 #endif /* NetUrlMacro_h */

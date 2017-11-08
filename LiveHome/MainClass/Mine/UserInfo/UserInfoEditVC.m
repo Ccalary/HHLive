@@ -17,7 +17,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic, strong) UIImage *headerImage;
-@property (nonatomic, strong) NSString *sex;
+@property (nonatomic, strong) NSString *companyPro;
 @property (nonatomic, strong) NSString *nickName, *areaName;
 @property (nonatomic, strong) NSString *realNameStatus;
 @end
@@ -26,9 +26,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.dataArray = @[@[@"头像",@"昵称",@"性别",@"城市"],@[@"实名认证"]];
+    self.dataArray = @[@[@"头像",@"昵称",@"属性",@"城市"],@[@"实名认证"]];
     self.headerImage = [UIImage imageNamed:@"header_default_60"];
-    self.sex = @"男";
+    self.companyPro = @"事业单位";
     self.areaName = @"北京";
     self.realNameStatus = @"未申请认证";
     [self initView];
@@ -100,7 +100,7 @@
                 cell.textField.text = self.nickName;
                 break;
             case 2://性别
-                cell.rightLabel.text = self.sex;
+                cell.rightLabel.text = self.companyPro;
                 break;
             case 3://城市
                 cell.rightLabel.text = self.areaName;
@@ -188,16 +188,22 @@
     LCActionSheet *sheet = [[LCActionSheet alloc] initWithTitle:nil cancelButtonTitle:@"取消" clicked:^(LCActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
         switch (buttonIndex) {
             case 1:
-                weakSelf.sex = @"男";
+                weakSelf.companyPro = @"事业单位";
                 break;
             case 2:
-                weakSelf.sex = @"女";
+                weakSelf.companyPro = @"外企";
+                break;
+            case 3:
+                weakSelf.companyPro = @"私营";
+                break;
+            case 4:
+                weakSelf.companyPro = @"民企";
                 break;
             default:
                 break;
         }
         [weakSelf reloadTableViewRow:row];
-    } otherButtonTitles:@"男",@"女", nil];
+    } otherButtonTitles:@"事业单位",@"外企",@"私营",@"民企",nil];
     [sheet show];
 }
 

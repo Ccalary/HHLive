@@ -68,7 +68,6 @@
         _chatSessionInputBarControl.delegate = self;
         [self addSubview:_chatSessionInputBarControl];
         self.originalFrame = frame;
-        [self addSubview:_chatSessionInputBarControl];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(KeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(KeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     }
@@ -146,6 +145,7 @@
 #pragma mark <RCChatSessionInputBarControlDelegate>
 - (void) KeyboardWillShow:(NSNotification*)notification {
     CGRect keyboardBounds = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    NSLog(@"keyBoard:%@", NSStringFromCGRect(keyboardBounds));
     UIViewAnimationCurve curve = [[notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] integerValue];
     CGFloat keyboardHeight = keyboardBounds.size.height;
     CGRect frame = self.frame;
@@ -165,14 +165,13 @@
     self.currentFrame = self.frame;
     self.currentInputBarHeight = self.frame.size.height;
     [self chatSessionInputBarControlContentSizeChanged:self.chatSessionInputBarControl.frame];
-    
 }
 
 
 - (void)KeyboardWillHide:(NSNotification*)notification {
     if ([self.delegate respondsToSelector:@selector(onInputBarControlContentSizeChanged:withAnimationDuration:andAnimationCurve:)]) {
         CGRect frame = self.originalFrame;
-        
+
         frame.size.height += self.chatSessionInputBarControl.frame.size.height - Height_ChatSessionInputBar;
         [self setFrame:frame];
         [self.delegate onInputBarControlContentSizeChanged:frame withAnimationDuration:0.1 andAnimationCurve:0];
