@@ -25,7 +25,7 @@
     _leftTopLabel = [[UILabel alloc] init];
     _leftTopLabel.font = FONT_SYSTEM(15);
     _leftTopLabel.textColor = [UIColor fontColorBlack];
-    _leftTopLabel.text = @"樱木花道";
+    _leftTopLabel.text = @"未知";
     [self.contentView addSubview:_leftTopLabel];
     [_leftTopLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(15*UIRate);
@@ -35,7 +35,7 @@
     _leftBottomLabel = [[UILabel alloc] init];
     _leftBottomLabel.font = FONT_SYSTEM(12);
     _leftBottomLabel.textColor = [UIColor fontColorLightGray];
-    _leftBottomLabel.text = @"2017-05-07 16:20:50";
+    _leftBottomLabel.text = @"2017-01-01 00:00:00";
     [self.contentView addSubview:_leftBottomLabel];
     [_leftBottomLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_leftTopLabel);
@@ -45,7 +45,7 @@
     _rightLabel = [[UILabel alloc] init];
     _rightLabel.font = FONT_SYSTEM(15);
     _rightLabel.textColor = [UIColor fontColorBlack];
-    _rightLabel.text = @"+200";
+    _rightLabel.text = @"+0.00";
     [self.contentView addSubview:_rightLabel];
     [_rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.offset(-15*UIRate);
@@ -61,6 +61,13 @@
         make.centerX.equalTo(self);
         make.bottom.equalTo(self);
     }];
+}
+
+- (void)setBillModel:(WalletBillModel *)billModel{
+    _billModel = billModel;
+    self.leftTopLabel.text = billModel.title;
+    self.rightLabel.text = billModel.money;
+    self.leftBottomLabel.text = billModel.time;
 }
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef void(^successBlock)(void);
 @interface WalletAddCardVC : UIViewController
-
+@property (nonatomic, copy) successBlock block;
 @end

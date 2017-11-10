@@ -7,11 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-
-
-//登录成功的保存信息
-#define kLoginSuccessDict @"LoginSuccessDict"
+#import "UserHelper.h"
 
 @class ApiResultData;
 

@@ -229,7 +229,7 @@
     
     [LHConnect postSendSms:parma loading:nil success:^(ApiResultData * _Nullable data) {
         [LCProgressHUD hide];
-        
+        [LCProgressHUD showSuccess:@"发送成功"];
         PublicModel_NSSring *model = [PublicModel_NSSring mj_objectWithKeyValues:data];
         self.tempCode = model.data;
         //开始倒计时

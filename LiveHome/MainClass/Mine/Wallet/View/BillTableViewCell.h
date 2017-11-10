@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WalletBillModel.h"
 
 @interface BillTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) WalletBillModel *billModel;
 @end

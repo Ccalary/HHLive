@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WalletMoneyModel.h"
 
 @interface WithdrawViewController : UIViewController
-
+@property (nonatomic, strong) WalletMoneyModel *moneyModel;
 @end

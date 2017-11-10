@@ -9,9 +9,10 @@
 #import "PhotoHelper.h"
 #import <LCActionSheet/LCActionSheet.h>
 #import "TZImagePickerController.h"
+#import "UIImage+fixOrientation.h"
 
 @interface PhotoHelper()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-@property (nonatomic, strong) UIImage *image;
+//@property (nonatomic, strong) UIImage *image;
 @property (nonatomic, weak) UIViewController *controller;
 @end
 
@@ -59,9 +60,11 @@
     __weak typeof(self) weakSelf = self;
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isBool) {
         __strong typeof(weakSelf)strongSelf = weakSelf;
-        strongSelf.image = photos.firstObject;
+        //图片压缩
+        NSData *data = UIImageJPEGRepresentation(photos.firstObject, 0.3);
+        UIImage *resultImage = [[UIImage imageWithData:data] fixOrientation];
         if (strongSelf.block){
-            strongSelf.block(strongSelf.image);
+            strongSelf.block(resultImage);
         }
     }];
     [self.controller presentViewController:imagePickerVc animated:YES completion:nil];
@@ -89,9 +92,11 @@
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
     UIImage *image = info[UIImagePickerControllerOriginalImage];
-    self.image = image;
+    //图片压缩
+    NSData *data = UIImageJPEGRepresentation(image, 0.3);
+    UIImage *resultImage = [[UIImage imageWithData:data] fixOrientation];
     if (self.block){
-        self.block(self.image);
+        self.block(resultImage);
     }
 }
 

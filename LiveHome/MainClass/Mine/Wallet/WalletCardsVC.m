@@ -9,21 +9,31 @@
 #import "WalletCardsVC.h"
 #import "CardsTableViewCell.h"
 #import "WalletAddCardVC.h"
+#import "LHConnect.h"
+#import "PublicModel_Array.h"
+#import "WalletMoneyModel.h"
 
 @interface WalletCardsVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *footerView;
+@property (nonatomic, strong) NSMutableArray *dataArray;
 @end
 
 @implementation WalletCardsVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.dataArray = [NSMutableArray array];
     [self initView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self requestData];
 }
 
 - (void)initView{
@@ -66,7 +76,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -75,10 +85,18 @@
     if (!cell) {
         cell = [[CardsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-//    cell.dividerLine.hidden = YES 
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+    cell.dividerLine.hidden = (self.dataArray.count-1 == indexPath.row) ? YES : NO;
+    [cell setModel:self.dataArray[indexPath.row] withSelectModel:self.model];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+ 
+    if (self.block){
+        self.block(self.dataArray[indexPath.row]);
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -101,4 +119,18 @@
 - (void)addButtonAction{
     [self.navigationController pushViewController:[[WalletAddCardVC alloc] init] animated:YES];
 }
+
+#pragma mark - 网络请求
+- (void)requestData{
+    [LHConnect postWalletBankCard:nil loading:@"加载中..." success:^(ApiResultData * _Nullable data) {
+        PublicModel_Array *arrayModel = [PublicModel_Array mj_objectWithKeyValues:data];
+        NSArray *array = [WalletMoneyModel mj_objectArrayWithKeyValuesArray:arrayModel.data];
+        [self.dataArray removeAllObjects];
+        [self.dataArray addObjectsFromArray:array];
+        [self.tableView reloadData];
+    } failure:^(ApiResultData * _Nullable data) {
+        
+    }];
+}
+
 @end

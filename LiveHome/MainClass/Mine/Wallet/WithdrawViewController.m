@@ -13,6 +13,9 @@
 #import "BillViewController.h"
 #import "WalletAddCardVC.h"
 #import "WalletCardsVC.h"
+#import "LHConnect.h"
+#import "WithdrawingVC.h"
+#import "PublicModel_Dict.h"
 
 #define kCell  @"kCell"
 NSString * const withdrawCellId1 = @"withdrawTableViewCell1";
@@ -30,6 +33,13 @@ NSString * const withdrawCellId2 = @"withdrawTableViewCell2";
 - (void)viewDidLoad {
     [super viewDidLoad];
     _cellsArray = [NSMutableArray array];
+    
+    if (self.moneyModel.cardID.length > 0){
+        self.isHaveCard = YES;
+    }else {
+        self.isHaveCard = NO;
+    }
+    
     [self initView];
 }
 
@@ -55,11 +65,9 @@ NSString * const withdrawCellId2 = @"withdrawTableViewCell2";
         make.edges.equalTo(self.view);
     }];
     
-    [self updateCell];
-    
-    //H 测试
-    self.isHaveCard = YES;
     [self updateUI];
+    
+    [self updateCell];
 }
 
 //更新UI
@@ -93,9 +101,11 @@ NSString * const withdrawCellId2 = @"withdrawTableViewCell2";
 - (WithdrawFooterView *)footerView{
     if (!_footerView){
         _footerView = [[WithdrawFooterView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 120*UIRate)];
+        _footerView.totalMoney = self.moneyModel.money;
+        __weak typeof (self) weakSelf = self;
         //提现
         _footerView.block = ^{
-            
+            [weakSelf requestWithdraw];
         };
     }
     return _footerView;
@@ -120,6 +130,9 @@ NSString * const withdrawCellId2 = @"withdrawTableViewCell2";
         if (!cell){
              cell = [[WithdrawTableViewCell1 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:withdrawCellId1];
         }
+        cell.noCardView.hidden = self.isHaveCard;
+        
+        cell.model = self.moneyModel;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         return cell;
@@ -162,16 +175,65 @@ NSString * const withdrawCellId2 = @"withdrawTableViewCell2";
     NSDictionary *dic = array[indexPath.row];
     if ([dic[kCell] isEqualToString:withdrawCellId1]){
         if (self.isHaveCard){//选择银行卡
-           [self.navigationController pushViewController:[[WalletCardsVC alloc] init] animated:YES];
+            WalletCardsVC *vc = [[WalletCardsVC alloc] init];
+            vc.model = self.moneyModel;
+            __weak typeof (self) weakSelf = self;
+            //切换银行卡
+            vc.block = ^(WalletMoneyModel *model) {
+                NSString *money = weakSelf.moneyModel.money;
+                weakSelf.moneyModel = model;
+                weakSelf.moneyModel.money = money;
+                [weakSelf.tableView reloadData];
+            };
+           [self.navigationController pushViewController:vc animated:YES];
         }else{//添加银行卡
-           [self.navigationController pushViewController:[[WalletAddCardVC alloc] init] animated:YES];
+           WalletAddCardVC *vc = [[WalletAddCardVC alloc] init];
+            __weak typeof (self) weakSelf = self;
+            vc.block = ^{
+                //添加成功后刷新数据
+                [weakSelf requestData];
+            };
+           [self.navigationController pushViewController:vc animated:YES];
         }
     }
 }
 
 #pragma mark - Action
 - (void)rightBarButtonItemAction{
+    [self.view endEditing:YES];
     [self.navigationController pushViewController:[[BillViewController alloc] init] animated:YES];
 }
 
+//提现
+- (void)requestWithdraw{
+    [self.view endEditing:YES];
+    if ([self.withdrawMoney doubleValue] < 10.0){
+        [LCProgressHUD showFailure:@"最低提现金额为10元"];
+        return;
+    }
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:self.moneyModel.cardID forKey:@"id"];
+    [params setValue:self.withdrawMoney forKey:@"money"];
+    
+    [LHConnect postWalletWithdrawals:params loading:@"提现中..." success:^(ApiResultData * _Nullable data) {
+        double money = [self.moneyModel.money doubleValue] - [self.withdrawMoney doubleValue];
+        self.footerView.totalMoney = [NSString stringWithFormat:@"%.2f", money];
+        WithdrawingVC *vc = [[WithdrawingVC alloc] init];
+        vc.withdrawMoney = self.withdrawMoney;
+        [self.navigationController pushViewController:vc animated:YES];
+    } failure:^(ApiResultData * _Nullable data) {
+        
+    }];
+}
+
+- (void)requestData{
+    [LHConnect postWalletWalletMoney:nil loading:@"加载中..." success:^(ApiResultData * _Nullable data) {
+        PublicModel_Dict *pDic = [PublicModel_Dict mj_objectWithKeyValues:data];
+        _moneyModel = [WalletMoneyModel mj_objectWithKeyValues:pDic.data];
+        [self.tableView reloadData];
+    } failure:^(ApiResultData * _Nullable data) {
+        
+    }];
+}
 @end

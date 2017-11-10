@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef void(^backBlock)(void);
 
 @interface RealNameVC : UIViewController
-
+@property (nonatomic, assign) BOOL isSuccess;//是否认证成功
+@property (nonatomic, copy) backBlock block;
 @end

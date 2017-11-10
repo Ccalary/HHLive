@@ -7,6 +7,8 @@
 //
 
 #import "MineHeaderView.h"
+#import "UIImageView+WebCache.h"
+
 @interface MineHeaderView()
 @property (nonatomic, strong) UIImageView *bgImageView, *headerImageView;
 @property (nonatomic, strong) UILabel *nameLabel, *numberLabel;
@@ -22,7 +24,7 @@
 
 - (void)initView{
     _bgImageView = [[UIImageView alloc] initWithFrame:self.frame];
-    _bgImageView.backgroundColor = [UIColor themeColor];
+    _bgImageView.image = [UIImage imageNamed:@"mine_bg_375x155"];
     [self addSubview:_bgImageView];
     
     UIButton *writeButton = [[UIButton alloc] init];
@@ -31,7 +33,7 @@
     [self addSubview:writeButton];
     [writeButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.mas_equalTo(35*UIRate);
-        make.top.offset(20*UIRate);
+        make.top.offset(StatusBarHeight);
         make.right.offset(0);
     }];
     
@@ -47,10 +49,11 @@
     
     _headerImageView = [[UIImageView alloc] init];
     _headerImageView.image = [UIImage imageNamed:@"header_default_60"];
-    _headerImageView.layer.cornerRadius = 40*UIRate;
+    _headerImageView.layer.cornerRadius = 28*UIRate;
+    _headerImageView.clipsToBounds = YES;
     [self addSubview:_headerImageView];
     [_headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.mas_equalTo(55*UIRate);
+        make.width.height.mas_equalTo(56*UIRate);
         make.center.equalTo(headerBgView);
     }];
     
@@ -91,4 +94,11 @@
     }
 }
 
+//填充数据
+- (void)setModel:(UserInfoModel *)model{
+    _model = model;
+    [_headerImageView sd_setImageWithURL:[NSURL URLWithString:model.userimage] placeholderImage:[UIImage imageNamed:@"header_default_60"]];
+    _nameLabel.text = model.username ?: @"用户1";
+    _numberLabel.text = [NSString stringWithFormat:@"ID:%@", model.findid ?: @""];
+}
 @end

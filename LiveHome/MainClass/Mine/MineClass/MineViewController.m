@@ -15,12 +15,20 @@
 #import "StatisticsViewController.h"
 #import "PasswordViewController.h"
 #import "SettingViewController.h"
+#import "UserHelper.h"
+#import "BaseNavigationController.h"
+#import "LoginViewController.h"
+#import "UserInfoModel.h"
+#import "UserHelper.h"
+#import "LHConnect.h"
+#import "PublicModel_Dict.h"
 
 @interface MineViewController ()<UITableViewDelegate, UITableViewDataSource,MineHeaderViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) MineHeaderView *headerView;
 @property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic, strong) NSArray *imageArray;
+@property (nonatomic, strong) UserInfoModel *model;
 @end
 
 @implementation MineViewController
@@ -39,6 +47,8 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
+    [self requestUserInfo];
 }
 
 - (void)initView{
@@ -137,6 +147,29 @@
 
 #pragma mark - MineHeaderViewDelegate
 - (void)mineHeaderViewBtnAction{
+    //H 测试
+    if (![UserHelper isLogin]){
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:loginVC];
+        [self presentViewController:nav animated:YES completion:nil];
+        return;
+    }
+    
     [self.navigationController pushViewController:[[UserInfoEditVC alloc] init] animated:YES];
+}
+
+//获取个人信息
+- (void)requestUserInfo{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:[UserHelper getMemberId] forKey:@"userid"];
+    [LHConnect postUserInfo:params loading:@"加载中..." success:^(ApiResultData * _Nullable data) {
+        PublicModel_Dict *pDict = [PublicModel_Dict mj_objectWithKeyValues:data];
+        NSDictionary *dic = pDict.data;
+        self.model = [UserInfoModel mj_objectWithKeyValues:dic];
+        self.headerView.model = self.model;
+        [UserHelper setUserInfo:dic];
+    } failure:^(ApiResultData * _Nullable data) {
+        
+    }];
 }
 @end

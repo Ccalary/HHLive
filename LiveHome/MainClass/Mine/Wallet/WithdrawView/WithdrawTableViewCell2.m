@@ -88,6 +88,7 @@
     _moneyField = [[UITextField alloc] init];
     _moneyField.textColor = [UIColor fontColorBlack];
     _moneyField.font = FONT_SYSTEM(15);
+    _moneyField.keyboardType = UIKeyboardTypeNumberPad;
     _moneyField.placeholder = @"请输入提现金额(元)";
     [_moneyField addTarget:self action:@selector(moneyFieldAction:) forControlEvents:UIControlEventEditingChanged];
     [self.contentView addSubview:_moneyField];

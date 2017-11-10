@@ -18,8 +18,11 @@
 #import <RongIMLib/RongIMLib.h>
 #import "RCDLive.h"
 #import "RCDLiveGiftMessage.h"
+#import "UserHelper.h"
+#import <SDWebImage/SDImageCache.h>
 
-#define RONGCLOUD_IM_APPKEY @"lmxuhwagl0t2d"
+
+#define RongIMAppKey_Pro @"e5t4ouvptxdja"
 
 @interface AppDelegate ()
 
@@ -36,22 +39,13 @@
     
     //初始化shardSdk
     [self registerShareSDK];
-    
-    [[RCDLive sharedRCDLive] initRongCloud:RONGCLOUD_IM_APPKEY];
-    //注册自定义消息
-    [[RCDLive sharedRCDLive] registerRongCloudMessageType:[RCDLiveGiftMessage class]];
-    //连接融云
-    [[RCDLive sharedRCDLive] connectRongCloudWithToken:@"yHHdFKDqrs+9Nd/7ycnLtxTpTgsOeTAqKlgBVq+WUqk9gDZVco/iCZQu5lTJdNrqOcvAx/yErmOZiMHxKp9tcg==" success:^(NSString *userId) {
-        NSLog(@"融云登录成功");
-    } error:^(RCConnectErrorCode status) {
-        
-    } tokenIncorrect:^{
-        
-    }];
+    //初始化融云
+    [self initRongCloud];
     
     return YES;
 }
 
+//横竖屏切换使用
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
 {
     if (self.allowLandscapeRight) {
@@ -84,6 +78,27 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - 初始化融云
+- (void)initRongCloud{
+    
+    [[RCDLive sharedRCDLive] initRongCloud:RongIMAppKey_Pro];
+    //注册自定义消息
+    [[RCDLive sharedRCDLive] registerRongCloudMessageType:[RCDLiveGiftMessage class]];
+    [self connectRongCloud];
+}
+
+//连接融云
+- (void)connectRongCloud{
+    //如果已经登录过则有token，否则登录后要重新登录下
+    [[RCDLive sharedRCDLive] connectRongCloudWithToken:[UserHelper getRongCloudToken] success:^(NSString *userId) {
+        DLog(@"融云登录成功");
+    } error:^(RCConnectErrorCode status) {
+        DLog(@"融云登录失败");
+    } tokenIncorrect:^{
+        DLog(@"融云登录Token错误");
+    }];
 }
 
 #pragma mark - 集成shareSDK

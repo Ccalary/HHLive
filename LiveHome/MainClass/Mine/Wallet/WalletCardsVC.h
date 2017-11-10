@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WalletMoneyModel.h"
+
+typedef void(^seletCardBlock)(WalletMoneyModel *model);
 
 @interface WalletCardsVC : UIViewController
-
+@property (nonatomic, strong) WalletMoneyModel *model;
+@property (nonatomic, copy) seletCardBlock block;
 @end

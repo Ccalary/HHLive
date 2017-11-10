@@ -8,6 +8,8 @@
 
 #import "WalletAddCardVC.h"
 #import "AddCardTableViewCell.h"
+#import "LHConnect.h"
+#import "PublicModel_Dict.h"
 
 @interface WalletAddCardVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -15,6 +17,8 @@
 @property (nonatomic, strong) UIButton *submitButton;
 @property (nonatomic, strong) NSArray *dataArray, *placeArray;
 @property (nonatomic, strong) NSMutableArray *stringArray;
+@property (nonatomic, assign) BOOL canGetCardType;//可以请求银行卡类型
+@property (nonatomic, strong) NSString *binNum;
 @end
 
 @implementation WalletAddCardVC
@@ -22,8 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _dataArray = @[@"开户名",@"银行账号",@"银行名称",@"支行名称"];
-    _placeArray = @[@"请输入开户名",@"请输入银行账号",@"请输入银行名称",@"请输入支行名称"];
+    _placeArray = @[@"请输入开户名",@"请输入银行账号",@"自动获取银行名称",@"请输入支行名称"];
     _stringArray = [[NSMutableArray alloc] initWithArray:@[@"",@"",@"",@""]];
+    _canGetCardType = YES;
     [self initView];
 }
 
@@ -85,12 +90,16 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.nameLabel.text = self.dataArray[indexPath.row];
     cell.textField.placeholder = self.placeArray[indexPath.row];
+    cell.textField.text = self.stringArray[indexPath.row];
     cell.textField.tag = 1000 + (int)indexPath.row;
+    cell.textField.userInteractionEnabled = YES;
+    cell.textField.keyboardType = UIKeyboardTypeDefault;
     [cell.textField addTarget:self action:@selector(textFieldAction:) forControlEvents:UIControlEventEditingChanged];
     if (indexPath.row == 1){
         cell.textField.keyboardType = UIKeyboardTypeNumberPad;
-    }else {
-        cell.textField.keyboardType = UIKeyboardTypeDefault;
+    }else if (indexPath.row == 2){
+        cell.textField.userInteractionEnabled = NO;
+        cell.clearBtn.hidden = YES;
     }
     [cell.clearBtn addTarget:self action:@selector(clearBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     cell.clearBtn.tag = 1000 + (int)indexPath.row;
@@ -102,6 +111,11 @@
     return 55*UIRate;
 }
 
+//刷新某一行
+- (void)reloadTableViewRow:(NSUInteger)row{
+    NSIndexPath *position = [NSIndexPath indexPathForRow:row inSection:0];//刷新第一个section的第row行
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:position,nil] withRowAnimation:UITableViewRowAnimationNone];
+}
 //Action 清除和隐藏工作在cell中处理了
 - (void)clearBtnAction:(UIButton *)button{
     int i = (int)button.tag - 1000;
@@ -115,15 +129,63 @@
     if (_stringArray.count > i){
         _stringArray[i] = textField.text;
     }
+    
+    if (textField.tag == 1001){//银行账号
+        if (textField.text.length > 9){
+            if (self.canGetCardType){
+                self.canGetCardType = NO;
+                [self requestWalletCardType];
+            }
+        }else {
+            self.canGetCardType = YES;
+            self.stringArray[2] = @"";
+            [self reloadTableViewRow:2];
+        }
+    }
+}
+
+//获得银行卡类型
+- (void)requestWalletCardType{
+    
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setValue:self.stringArray[1] forKey:@"card"];
+    
+    [LHConnect postWalletGetCardType:params loading:nil success:^(ApiResultData * _Nullable data) {
+        PublicModel_Dict *pDic = [PublicModel_Dict mj_objectWithKeyValues:data];
+        NSDictionary *dic = pDic.data;
+        self.stringArray[2] = [NSString stringWithFormat:@"%@",[dic objectForKey:@"type"]];
+        self.binNum = [NSString stringWithFormat:@"%d",[[dic objectForKey:@"id"] intValue]];
+        [self reloadTableViewRow:2];
+    } failure:^(ApiResultData * _Nullable data) {
+        self.canGetCardType = YES;
+    }];
 }
 
 //提交
 - (void)submitBtnAction{
+    [self.view endEditing:YES];
     for (NSString *text in self.stringArray){
         if (text.length == 0){
             [LCProgressHUD showFailure:@"信息不全!"];
+            return;
         }
     }
-    NSLog(@"%@",self.stringArray);
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setValue:self.stringArray[0] forKey:@"name"];
+    [params setValue:self.stringArray[1] forKey:@"account"];
+    [params setValue:self.binNum forKey:@"binnum"];
+    [params setValue:self.stringArray.lastObject forKey:@"bankname"];
+    [LHConnect postWalletAddBankCard:params loading:@"提交中..." success:^(ApiResultData * _Nullable data) {
+        [LCProgressHUD showSuccess:@"添加成功"];
+        //延时
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if (self.block){
+                self.block();
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+    } failure:^(ApiResultData * _Nullable data) {
+        
+    }];
 }
 @end

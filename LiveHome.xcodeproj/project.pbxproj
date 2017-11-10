@@ -62,9 +62,6 @@
 		FE4A21D41FB1720700C1A55A /* StreamStreamingView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4A21601FB1720700C1A55A /* StreamStreamingView.m */; };
 		FE4A21D51FB1720700C1A55A /* StreamingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4A21631FB1720700C1A55A /* StreamingCollectionViewCell.m */; };
 		FE4A21D61FB1720700C1A55A /* StreamingTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4A21651FB1720700C1A55A /* StreamingTopView.m */; };
-		FE4A21D71FB1720700C1A55A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4A21681FB1720700C1A55A /* LoginViewController.m */; };
-		FE4A21D81FB1720700C1A55A /* PasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4A216A1FB1720700C1A55A /* PasswordViewController.m */; };
-		FE4A21D91FB1720700C1A55A /* PopSecurityCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4A216D1FB1720700C1A55A /* PopSecurityCodeView.m */; };
 		FE4A21DA1FB1720700C1A55A /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4A21701FB1720700C1A55A /* MessageViewController.m */; };
 		FE4A21DB1FB1720700C1A55A /* ContributeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4A21741FB1720700C1A55A /* ContributeTableViewCell.m */; };
 		FE4A21DC1FB1720700C1A55A /* ContributeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4A21761FB1720700C1A55A /* ContributeVC.m */; };
@@ -121,6 +118,9 @@
 		FE4A225C1FB176C900C1A55A /* RCDDanmakuManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4A22581FB176C900C1A55A /* RCDDanmakuManager.m */; };
 		FE4D6ECF1FAEAFBB005441BE /* RunLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4D6ECE1FAEAFBB005441BE /* RunLabelView.m */; };
 		FE5E648C1FAC89A60077F3A8 /* FL_Button.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5E648B1FAC89A60077F3A8 /* FL_Button.m */; };
+		FE5F3ED51FB405ED000F2529 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5F3ECF1FB405ED000F2529 /* LoginViewController.m */; };
+		FE5F3ED61FB405ED000F2529 /* PasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5F3ED11FB405ED000F2529 /* PasswordViewController.m */; };
+		FE5F3ED71FB405ED000F2529 /* PopSecurityCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5F3ED41FB405ED000F2529 /* PopSecurityCodeView.m */; };
 		FE7693CA1FA302A500400BA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE7693C81FA302A500400BA7 /* Main.storyboard */; };
 		FE7693CC1FA302A500400BA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE7693CB1FA302A500400BA7 /* Assets.xcassets */; };
 		FE7693CF1FA302A500400BA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE7693CD1FA302A500400BA7 /* LaunchScreen.storyboard */; };
@@ -168,11 +168,16 @@
 		FED1843F1FB0419500937E07 /* LHConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1843E1FB0419500937E07 /* LHConnect.m */; };
 		FED35CD61FB2EB0900877D8A /* ChangePhoneNumVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FED35CD51FB2EB0900877D8A /* ChangePhoneNumVC.m */; };
 		FED35CD91FB2F48B00877D8A /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FED35CD81FB2F48B00877D8A /* FeedbackViewController.m */; };
+		FEE17EB21FB4281D003926A8 /* WalletMoneyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE17EB11FB4281D003926A8 /* WalletMoneyModel.m */; };
+		FEE17EB51FB42FC1003926A8 /* WalletBillModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE17EB41FB42FC1003926A8 /* WalletBillModel.m */; };
 		FEE97B351FA30B8900AB2767 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE97B331FA30B8900AB2767 /* AppDelegate.m */; };
 		FEE97B441FA311CF00AB2767 /* UIColor+App.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE97B3F1FA311CF00AB2767 /* UIColor+App.m */; };
 		FEE97B451FA311CF00AB2767 /* NSArray+Dlog.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE97B411FA311CF00AB2767 /* NSArray+Dlog.m */; };
 		FEE97B461FA311CF00AB2767 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE97B431FA311CF00AB2767 /* UIView+Extension.m */; };
 		FEE97B4B1FA3207200AB2767 /* UserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE97B4A1FA3207200AB2767 /* UserHelper.m */; };
+		FEF9D7261FB53A11006D027A /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D7251FB53A11006D027A /* UserInfoModel.m */; };
+		FEF9D72A1FB5858B006D027A /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D7291FB5858B006D027A /* UIImage+fixOrientation.m */; };
+		FEF9D72D1FB5A47E006D027A /* StreamDirectionPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D72C1FB5A47E006D027A /* StreamDirectionPopView.m */; };
 		FEFB45911FB2D58B0009B886 /* WithdrawingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FEFB45901FB2D58B0009B886 /* WithdrawingVC.m */; };
 		FEFB45951FB2DD1B0009B886 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEFB45941FB2DD1A0009B886 /* SettingViewController.m */; };
 /* End PBXBuildFile section */
@@ -279,12 +284,6 @@
 		FE4A21631FB1720700C1A55A /* StreamingCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamingCollectionViewCell.m; sourceTree = "<group>"; };
 		FE4A21641FB1720700C1A55A /* StreamingTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamingTopView.h; sourceTree = "<group>"; };
 		FE4A21651FB1720700C1A55A /* StreamingTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamingTopView.m; sourceTree = "<group>"; };
-		FE4A21671FB1720700C1A55A /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		FE4A21681FB1720700C1A55A /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		FE4A21691FB1720700C1A55A /* PasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordViewController.h; sourceTree = "<group>"; };
-		FE4A216A1FB1720700C1A55A /* PasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordViewController.m; sourceTree = "<group>"; };
-		FE4A216C1FB1720700C1A55A /* PopSecurityCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopSecurityCodeView.h; sourceTree = "<group>"; };
-		FE4A216D1FB1720700C1A55A /* PopSecurityCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopSecurityCodeView.m; sourceTree = "<group>"; };
 		FE4A216F1FB1720700C1A55A /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		FE4A21701FB1720700C1A55A /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		FE4A21731FB1720700C1A55A /* ContributeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContributeTableViewCell.h; sourceTree = "<group>"; };
@@ -400,6 +399,12 @@
 		FE4D6ECE1FAEAFBB005441BE /* RunLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunLabelView.m; sourceTree = "<group>"; };
 		FE5E648A1FAC89A60077F3A8 /* FL_Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FL_Button.h; sourceTree = "<group>"; };
 		FE5E648B1FAC89A60077F3A8 /* FL_Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FL_Button.m; sourceTree = "<group>"; };
+		FE5F3ECE1FB405ED000F2529 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		FE5F3ECF1FB405ED000F2529 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		FE5F3ED01FB405ED000F2529 /* PasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordViewController.h; sourceTree = "<group>"; };
+		FE5F3ED11FB405ED000F2529 /* PasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordViewController.m; sourceTree = "<group>"; };
+		FE5F3ED31FB405ED000F2529 /* PopSecurityCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopSecurityCodeView.h; sourceTree = "<group>"; };
+		FE5F3ED41FB405ED000F2529 /* PopSecurityCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopSecurityCodeView.m; sourceTree = "<group>"; };
 		FE7693BF1FA302A500400BA7 /* LiveHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE7693C91FA302A500400BA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FE7693CB1FA302A500400BA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -489,6 +494,10 @@
 		FED35CD51FB2EB0900877D8A /* ChangePhoneNumVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangePhoneNumVC.m; sourceTree = "<group>"; };
 		FED35CD71FB2F48B00877D8A /* FeedbackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
 		FED35CD81FB2F48B00877D8A /* FeedbackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
+		FEE17EB01FB4281D003926A8 /* WalletMoneyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletMoneyModel.h; sourceTree = "<group>"; };
+		FEE17EB11FB4281D003926A8 /* WalletMoneyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletMoneyModel.m; sourceTree = "<group>"; };
+		FEE17EB31FB42FC1003926A8 /* WalletBillModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletBillModel.h; sourceTree = "<group>"; };
+		FEE17EB41FB42FC1003926A8 /* WalletBillModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletBillModel.m; sourceTree = "<group>"; };
 		FEE97B331FA30B8900AB2767 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FEE97B341FA30B8900AB2767 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FEE97B3E1FA311CF00AB2767 /* UIColor+App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+App.h"; sourceTree = "<group>"; };
@@ -501,6 +510,12 @@
 		FEE97B4A1FA3207200AB2767 /* UserHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserHelper.m; sourceTree = "<group>"; };
 		FEE97B4D1FA3217200AB2767 /* NetUrlMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetUrlMacro.h; sourceTree = "<group>"; };
 		FEE97B4E1FA3218600AB2767 /* NotificationMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationMacro.h; sourceTree = "<group>"; };
+		FEF9D7241FB53A11006D027A /* UserInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
+		FEF9D7251FB53A11006D027A /* UserInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
+		FEF9D7281FB5858B006D027A /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
+		FEF9D7291FB5858B006D027A /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
+		FEF9D72B1FB5A47E006D027A /* StreamDirectionPopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StreamDirectionPopView.h; sourceTree = "<group>"; };
+		FEF9D72C1FB5A47E006D027A /* StreamDirectionPopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StreamDirectionPopView.m; sourceTree = "<group>"; };
 		FEFB458F1FB2D58B0009B886 /* WithdrawingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawingVC.h; sourceTree = "<group>"; };
 		FEFB45901FB2D58B0009B886 /* WithdrawingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawingVC.m; sourceTree = "<group>"; };
 		FEFB45931FB2DD1A0009B886 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
@@ -719,9 +734,9 @@
 				FE4A213B1FB1720700C1A55A /* Home */,
 				FE4A21B51FB1720700C1A55A /* Second */,
 				FE4A21411FB1720700C1A55A /* Live */,
-				FE4A21661FB1720700C1A55A /* Login */,
 				FE4A216E1FB1720700C1A55A /* Message */,
 				FE4A21711FB1720700C1A55A /* Mine */,
+				FE5F3ECD1FB405ED000F2529 /* Login */,
 				FE4A21B41FB1720700C1A55A /* RongCloud */,
 			);
 			name = MainClass;
@@ -816,6 +831,8 @@
 				FE4A21481FB1720700C1A55A /* LocationSettingPopView.h */,
 				FE4A21491FB1720700C1A55A /* LocationSettingPopView.m */,
 				FE4A214A1FB1720700C1A55A /* LocationSettingPopView.xib */,
+				FEF9D72B1FB5A47E006D027A /* StreamDirectionPopView.h */,
+				FEF9D72C1FB5A47E006D027A /* StreamDirectionPopView.m */,
 			);
 			path = PopView;
 			sourceTree = "<group>";
@@ -877,27 +894,6 @@
 				FE4A21631FB1720700C1A55A /* StreamingCollectionViewCell.m */,
 				FE4A21641FB1720700C1A55A /* StreamingTopView.h */,
 				FE4A21651FB1720700C1A55A /* StreamingTopView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		FE4A21661FB1720700C1A55A /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				FE4A21671FB1720700C1A55A /* LoginViewController.h */,
-				FE4A21681FB1720700C1A55A /* LoginViewController.m */,
-				FE4A21691FB1720700C1A55A /* PasswordViewController.h */,
-				FE4A216A1FB1720700C1A55A /* PasswordViewController.m */,
-				FE4A216B1FB1720700C1A55A /* View */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		FE4A216B1FB1720700C1A55A /* View */ = {
-			isa = PBXGroup;
-			children = (
-				FE4A216C1FB1720700C1A55A /* PopSecurityCodeView.h */,
-				FE4A216D1FB1720700C1A55A /* PopSecurityCodeView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1027,6 +1023,7 @@
 		FE4A219B1FB1720700C1A55A /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				FEE17EAF1FB427F0003926A8 /* Model */,
 				FE4A219E1FB1720700C1A55A /* View */,
 				FE4A21AB1FB1720700C1A55A /* WithdrawView */,
 				FE4A21A91FB1720700C1A55A /* WalletViewController.h */,
@@ -1222,6 +1219,28 @@
 				FE5E648B1FAC89A60077F3A8 /* FL_Button.m */,
 			);
 			path = FL_Button;
+			sourceTree = "<group>";
+		};
+		FE5F3ECD1FB405ED000F2529 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FEF9D7271FB53A1C006D027A /* Model */,
+				FE5F3ED21FB405ED000F2529 /* View */,
+				FE5F3ECE1FB405ED000F2529 /* LoginViewController.h */,
+				FE5F3ECF1FB405ED000F2529 /* LoginViewController.m */,
+				FE5F3ED01FB405ED000F2529 /* PasswordViewController.h */,
+				FE5F3ED11FB405ED000F2529 /* PasswordViewController.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		FE5F3ED21FB405ED000F2529 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FE5F3ED31FB405ED000F2529 /* PopSecurityCodeView.h */,
+				FE5F3ED41FB405ED000F2529 /* PopSecurityCodeView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		FE7693B61FA302A500400BA7 = {
@@ -1463,6 +1482,17 @@
 			path = GTMBase64;
 			sourceTree = "<group>";
 		};
+		FEE17EAF1FB427F0003926A8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FEE17EB01FB4281D003926A8 /* WalletMoneyModel.h */,
+				FEE17EB11FB4281D003926A8 /* WalletMoneyModel.m */,
+				FEE17EB31FB42FC1003926A8 /* WalletBillModel.h */,
+				FEE17EB41FB42FC1003926A8 /* WalletBillModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		FEE97B321FA30B7400AB2767 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -1482,6 +1512,8 @@
 				FEE97B431FA311CF00AB2767 /* UIView+Extension.m */,
 				FEACD9571FA8902100503C10 /* UIButton+ImageTitleSpacing.h */,
 				FEACD9561FA8902100503C10 /* UIButton+ImageTitleSpacing.m */,
+				FEF9D7281FB5858B006D027A /* UIImage+fixOrientation.h */,
+				FEF9D7291FB5858B006D027A /* UIImage+fixOrientation.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1506,6 +1538,15 @@
 				FEACD9241FA8217600503C10 /* PhotoHelper.m */,
 			);
 			path = LiveHelper;
+			sourceTree = "<group>";
+		};
+		FEF9D7271FB53A1C006D027A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FEF9D7241FB53A11006D027A /* UserInfoModel.h */,
+				FEF9D7251FB53A11006D027A /* UserInfoModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		FEFB45921FB2DD0E0009B886 /* Setting */ = {
@@ -1660,6 +1701,7 @@
 				FE4A21F11FB1720700C1A55A /* WalletViewController.m in Sources */,
 				FE4A21D41FB1720700C1A55A /* StreamStreamingView.m in Sources */,
 				FE4A225C1FB176C900C1A55A /* RCDDanmakuManager.m in Sources */,
+				FE5F3ED51FB405ED000F2529 /* LoginViewController.m in Sources */,
 				FE4A22461FB1742A00C1A55A /* RCDLiveGiftMessageCell.m in Sources */,
 				FE4A21D31FB1720700C1A55A /* StreamingStartView.m in Sources */,
 				FEE97B4B1FA3207200AB2767 /* UserHelper.m in Sources */,
@@ -1676,6 +1718,7 @@
 				FE4A22181FB1736B00C1A55A /* RCDLiveInputBar.m in Sources */,
 				FE4A21EB1FB1720700C1A55A /* BillViewController.m in Sources */,
 				FE4A21ED1FB1720700C1A55A /* BillTableViewCell.m in Sources */,
+				FEF9D72A1FB5858B006D027A /* UIImage+fixOrientation.m in Sources */,
 				FE4A221C1FB1736B00C1A55A /* RCDLiveContentView.m in Sources */,
 				FE4A22291FB173ED00C1A55A /* RCDLiveGiftMessage.m in Sources */,
 				FE4A21DF1FB1720700C1A55A /* MineTableViewCell.m in Sources */,
@@ -1702,7 +1745,6 @@
 				FEACD9181FA81D9500503C10 /* TZImageCropManager.m in Sources */,
 				FE4A21EA1FB1720700C1A55A /* UserInfoTableViewCell.m in Sources */,
 				FE4A21E81FB1720700C1A55A /* StatisticsTableViewCell.m in Sources */,
-				FE4A21D91FB1720700C1A55A /* PopSecurityCodeView.m in Sources */,
 				FE4A21C41FB1720700C1A55A /* BaseTableView.m in Sources */,
 				FE4A21CE1FB1720700C1A55A /* SettingViewModel.m in Sources */,
 				FEE97B351FA30B8900AB2767 /* AppDelegate.m in Sources */,
@@ -1712,7 +1754,6 @@
 				FE4A224B1FB1747400C1A55A /* RCDLiveChatRoomViewController.m in Sources */,
 				FED35CD61FB2EB0900877D8A /* ChangePhoneNumVC.m in Sources */,
 				FE4A21BD1FB1720700C1A55A /* PublicModel_Array.m in Sources */,
-				FE4A21D71FB1720700C1A55A /* LoginViewController.m in Sources */,
 				FE4A21E41FB1720700C1A55A /* StatciCollectionViewCell.m in Sources */,
 				FE4A21D11FB1720700C1A55A /* StreamingViewModel.m in Sources */,
 				FE4A21DE1FB1720700C1A55A /* MineHeaderView.m in Sources */,
@@ -1734,7 +1775,9 @@
 				FE4A21C71FB1720700C1A55A /* CloseStreamingPopView.m in Sources */,
 				FE4A21BE1FB1720700C1A55A /* PublicModel_Bool.m in Sources */,
 				FE4A21DC1FB1720700C1A55A /* ContributeVC.m in Sources */,
+				FEF9D72D1FB5A47E006D027A /* StreamDirectionPopView.m in Sources */,
 				FE4A21F01FB1720700C1A55A /* WalletCardsVC.m in Sources */,
+				FEF9D7261FB53A11006D027A /* UserInfoModel.m in Sources */,
 				FE4A21F51FB1720700C1A55A /* WithdrawViewController.m in Sources */,
 				FE4A21F21FB1720700C1A55A /* WithdrawFooterView.m in Sources */,
 				FE23DDD91FA71DED00FC6FC6 /* SendCodeButton.m in Sources */,
@@ -1744,8 +1787,10 @@
 				FE4A221D1FB1736B00C1A55A /* RCDLiveTipLabel.m in Sources */,
 				FEACD9211FA81D9500503C10 /* TZVideoPlayerController.m in Sources */,
 				FE4A21F71FB1720700C1A55A /* SignInViewController.m in Sources */,
+				FEE17EB21FB4281D003926A8 /* WalletMoneyModel.m in Sources */,
 				FE4A21CA1FB1720700C1A55A /* LocationSettingPopView.m in Sources */,
 				FE4A221A1FB1736B00C1A55A /* RCDLiveAttributedLabel.m in Sources */,
+				FE5F3ED61FB405ED000F2529 /* PasswordViewController.m in Sources */,
 				FEACD95C1FA94E7D00503C10 /* HHPopSelectView.m in Sources */,
 				FEACD9251FA8217600503C10 /* PhotoHelper.m in Sources */,
 				FE4A21EE1FB1720700C1A55A /* CardsTableViewCell.m in Sources */,
@@ -1756,7 +1801,6 @@
 				FEACD9191FA81D9500503C10 /* TZImageManager.m in Sources */,
 				FE4A21C51FB1720700C1A55A /* OldVideosCollectionViewCell.m in Sources */,
 				FE3C22BE1FA41C1A00F6ACD2 /* HHRefreshNormalFooter.m in Sources */,
-				FE4A21D81FB1720700C1A55A /* PasswordViewController.m in Sources */,
 				FE4A21DB1FB1720700C1A55A /* ContributeTableViewCell.m in Sources */,
 				FED184371FB02D4100937E07 /* NSDate+Format.m in Sources */,
 				FE4A21E51FB1720700C1A55A /* StaticHeaderView.m in Sources */,
@@ -1780,9 +1824,11 @@
 				FEFB45951FB2DD1B0009B886 /* SettingViewController.m in Sources */,
 				FED1843B1FB02D4100937E07 /* GTMBase64.m in Sources */,
 				FEA0DD721FB1B138003C22A9 /* StreamingEndView.m in Sources */,
+				FEE17EB51FB42FC1003926A8 /* WalletBillModel.m in Sources */,
 				FE4A21DD1FB1720700C1A55A /* MineViewController.m in Sources */,
 				FE7694001FA3071100400BA7 /* LCProgressHUD.m in Sources */,
 				FE4A21C21FB1720700C1A55A /* BaseTabBarController.m in Sources */,
+				FE5F3ED71FB405ED000F2529 /* PopSecurityCodeView.m in Sources */,
 				FE4A21EF1FB1720700C1A55A /* WalletAddCardVC.m in Sources */,
 				FE4A21E21FB1720700C1A55A /* RealNameFooterView.m in Sources */,
 				FEACD9161FA81D9500503C10 /* TZAssetModel.m in Sources */,

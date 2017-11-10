@@ -12,6 +12,10 @@
 #import <SDWebImage/SDImageCache.h>
 #import "ChangePhoneNumVC.h"
 #import "FeedbackViewController.h"
+#import "UserHelper.h"
+#import "LoginViewController.h"
+#import "BaseNavigationController.h"
+#import "RCDLive.h"
 
 @interface SettingViewController ()<UITableViewDelegate, UITableViewDataSource,UIGestureRecognizerDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -25,9 +29,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.dataArray = @[@[@"更换手机号"],@[@"清除缓存",@"意见反馈",@"软件版本"],@[@"注销"]];
+
+    float tmpSize = [[SDImageCache sharedImageCache] getSize] / 1024 /1024;
+    self.memoryStr  = tmpSize >= 1 ? [NSString stringWithFormat:@"%.2fM",tmpSize] : [NSString stringWithFormat:@"%.2fK",tmpSize * 1024];
     
-    float tmpSize = [[SDImageCache sharedImageCache] getSize];//getDiskCount
-    self.memoryStr = tmpSize >= 1 ? [NSString stringWithFormat:@"%.1fM",tmpSize] : [NSString stringWithFormat:@"%.1fK",tmpSize * 1024];
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     self.version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     [self initView];
@@ -155,13 +160,26 @@
 
 //清除缓存
 - (void)clearMemory{
+    __weak typeof (self) weakSelf = self;
     [[SDImageCache sharedImageCache] clearMemory];
-    self.memoryStr = @"0.0K";
-    [self.tableView reloadData];
+    [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+        float tmpSize = [[SDImageCache sharedImageCache] getSize] / 1024 /1024;
+        weakSelf.memoryStr  = tmpSize >= 1 ? [NSString stringWithFormat:@"%.2fM",tmpSize] : [NSString stringWithFormat:@"%.2fK",tmpSize * 1024];
+        [weakSelf.tableView reloadData];
+    }];
+  
 }
 
 //退出
 - (void)logout{
-    
+    [UserHelper logout];
+    //退出融云
+    [[RCDLive sharedRCDLive] logoutRongCloud];
+    if (![UserHelper isLogin]){
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:loginVC];
+        [self presentViewController:nav animated:YES completion:nil];
+    }
 }
+
 @end

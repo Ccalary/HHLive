@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WalletMoneyModel.h"
 
 @interface WithdrawTableViewCell1 : UITableViewCell
-
+@property (nonatomic, strong) UIView *noCardView;
+@property (nonatomic, strong) WalletMoneyModel *model;
 @end

@@ -10,13 +10,26 @@
 #import "RealNameFooterView.h"
 #import "CountdownTableViewCell.h"
 #import "PhotoHelper.h"
+#import "CNPPopupController.h"
+#import "PopSecurityCodeView.h"
+#import "LHConnect.h"
+#import "PublicModel_NSSring.h"
+#import "PublicModel_Array.h"
 
-@interface RealNameVC ()<UITableViewDelegate, UITableViewDataSource,RealNameFooterViewDelegate>
+#define Cell_Tag  666
+
+
+@interface RealNameVC ()<UITableViewDelegate, UITableViewDataSource,RealNameFooterViewDelegate,PopSecurityCodeViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) RealNameFooterView *footerView;
 @property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic, strong) NSMutableArray *resultArray;
+@property (nonatomic, strong) CNPPopupController *popupController;
+@property (nonatomic, strong) PopSecurityCodeView *codeView;
+@property (nonatomic, strong) NSString *imageUrl;
+@property (nonatomic, strong) NSString *tempCode;
+@property (nonatomic, strong) NSArray *imageArray;
 @end
 
 @implementation RealNameVC
@@ -33,8 +46,11 @@
 - (void)initView{
     self.view.backgroundColor = [UIColor bgColorMain];
     self.navigationItem.title = @"实名认证";
-    
-    [self initNormalView];
+    if (self.isSuccess) {
+        [self initFinishView];
+    }else{
+        [self initNormalView];
+    }
 }
 
 - (void)initNormalView{
@@ -62,7 +78,7 @@
 - (void)initFinishView{
     
     UIImageView *imageView = [[UIImageView alloc] init];
-    imageView.image = [UIImage imageNamed:@""];
+    imageView.image = [UIImage imageNamed:@"real_success_97"];
     [self.view addSubview:imageView];
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.mas_equalTo(97*UIRate);
@@ -97,10 +113,19 @@
 
 - (RealNameFooterView *)footerView{
     if (!_footerView){
-        _footerView = [[RealNameFooterView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 130*UIRate)];
+        _footerView = [[RealNameFooterView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 350*UIRate)];
         _footerView.delegate = self;
     }
     return _footerView;
+}
+
+//弹窗
+- (PopSecurityCodeView *)codeView{
+    if (!_codeView){
+        _codeView = [[PopSecurityCodeView alloc] initWithFrame:CGRectMake(0, 0, 330*UIRate, 160*UIRate)];
+        _codeView.delegate = self;
+    }
+    return _codeView;
 }
 
 #pragma mark - UITableViewDelegate
@@ -128,12 +153,24 @@
     [cell.textField addTarget:self action:@selector(textFieldAction:) forControlEvents:UIControlEventEditingChanged];
     switch (indexPath.row) {
         case 1:
+        {
             cell.textField.keyboardType = UIKeyboardTypeNumberPad;
+            cell.tag = Cell_Tag;//特殊的tag标记
+            __weak typeof (self) weakSelf = self;
             //倒计时按钮点击
             cell.block = ^{
-                DLog(@"倒计时开始");
+                NSString *phoneNum = weakSelf.resultArray[indexPath.row];
+                if (phoneNum.length != 11){
+                    [LCProgressHUD showFailure:@"请输入11位手机号码"];
+                    return;
+                }
+                self.popupController = [[CNPPopupController alloc] initWithContents:@[self.codeView]];
+                [self.popupController presentPopupControllerAnimated:YES];
+                [self.codeView.textField becomeFirstResponder];
+                [weakSelf requestCodePictureWith:phoneNum];
             };
             [cell countdownViewHidden:NO];
+        }
             break;
         case 2:
             cell.textField.keyboardType = UIKeyboardTypeNumberPad;
@@ -162,14 +199,37 @@
             __weak typeof (self) weakSelf = self;
             photoHelper.block = ^(UIImage *image) {
                 weakSelf.footerView.photoImage = image;
+                weakSelf.imageArray = @[image];
             };
         }
             break;
         case RealNameFooterViewBtnTypeSubmit://提交审核
+            [self submit];
             break;
         default:
             break;
     }
+}
+
+#pragma mark - PopSecurityCodeViewDelegate
+- (void)securityCodeBtnAction:(PopSecurityCodeViewBtnType)type{
+    switch (type) {
+        case PopSecurityCodeViewBtnCode://更换验证码
+            [self requestCodePictureWith:self.resultArray[1]];
+            break;
+        case PopSecurityCodeViewBtnSubmit://提交
+            [self requestSmsCode];
+            break;
+        case PopSecurityCodeViewBtnCancel://取消
+            [self hiddenCodeView];
+            break;
+    }
+}
+
+- (void)hiddenCodeView{
+    [self.codeView endEditing:YES];
+    self.codeView.textField.text = @"";
+    [self.popupController dismissPopupControllerAnimated:YES];
 }
 
 #pragma mark - Action
@@ -190,5 +250,106 @@
 
 - (void)tapAction{
     [self.view endEditing:YES];
+}
+
+#pragma mark - 网络
+//下载验证码图片
+-(void)requestCodePictureWith:(NSString *)phoneNum
+{
+    _imageUrl = [NSString stringWithFormat:@"http://findapi.o2o.com.cn:8080/%@?mobile=%@",ValidImage,phoneNum];
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:_imageUrl]];
+    UIImage *image = [UIImage imageWithData:data];
+    self.codeView.codeImageView.image = image;
+}
+
+//请求短信
+- (void)requestSmsCode{
+    [LCProgressHUD showKeyWindowLoading:@"加载中..."];
+    NSString *phoneNum = self.resultArray[1];
+    NSString *code = self.codeView.textField.text;
+    if (code.length == 0) {
+        [LCProgressHUD showKeyWindowFailure:@"请输入验证码"];
+        return;
+    }
+    NSMutableDictionary *parma = [NSMutableDictionary dictionary];
+    [parma setValue:phoneNum forKey:@"mobile"];
+    [parma setValue:code forKey:@"code"];
+    
+    [LHConnect postSendSms:parma loading:nil success:^(ApiResultData * _Nullable data) {
+        [LCProgressHUD hide];
+        [LCProgressHUD showSuccess:@"发送成功"];
+        PublicModel_NSSring *model = [PublicModel_NSSring mj_objectWithKeyValues:data];
+        self.tempCode = model.data;
+        //开始倒计时
+        CountdownTableViewCell *cell = (CountdownTableViewCell *)[self.view viewWithTag:Cell_Tag];
+        [cell codeCountdownStart];
+        
+        [self hiddenCodeView];
+    } failure:^(ApiResultData * _Nullable data) {
+    }];
+}
+
+//提交
+- (void)submit{
+    //信息
+    NSString *name = self.resultArray.firstObject;
+    NSString *phoneNum = self.resultArray[1];
+    NSString *code = self.resultArray[2];
+    NSString *idCard = self.resultArray.lastObject;
+    if (name.length == 0){
+        [LCProgressHUD showFailure:@"请输入姓名"];
+        return;
+    }
+    if (phoneNum.length != 11) {
+        [LCProgressHUD showFailure:@"请输入11位手机号码"];
+        return;
+    }
+    if (code.length == 0){
+        [LCProgressHUD showFailure:@"请输入验证码"];
+        return;
+    }
+    if (idCard.length < 6){
+        [LCProgressHUD showFailure:@"请输入18位身份证号"];
+        return;
+    }
+    [self.view endEditing:YES];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:name forKey:@"name"];
+    [params setValue:phoneNum forKey:@"mobile"];
+    [params setValue:self.tempCode forKey:@"tempcode"];
+    [params setValue:code forKey:@"code"];
+    [params setValue:idCard forKey:@"idcard"];
+
+    //照片
+    if (self.imageArray.count == 0) {
+        [LCProgressHUD showFailure:@"请添加照片"];
+        return;
+    }
+    [LCProgressHUD showLoading:@"提交中..."];
+    [LHConnect uploadImageResource:nil files:self.imageArray success:^(ApiResultData * _Nullable data) {
+        PublicModel_Array *pArray = [PublicModel_Array mj_objectWithKeyValues:data];
+        NSString *imageurl = pArray.data[0];
+        [params setValue:imageurl forKey:@"image"];
+        [self postCerInfo:params];
+       
+    } failure:^(ApiResultData * _Nullable data) {
+        [LCProgressHUD hide];
+    }];
+}
+//信息提交
+- (void)postCerInfo:(NSMutableDictionary *)params{
+    [LHConnect postCertification:params loading:@"" success:^(ApiResultData * _Nullable data) {
+        [LCProgressHUD showSuccess:@"提交审核成功"];
+        if (self.block){
+            self.block();
+        }
+        //延时
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+    } failure:^(ApiResultData * _Nullable data) {
+        
+    }];
 }
 @end

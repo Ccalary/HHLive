@@ -17,6 +17,41 @@
 }
 
 #pragma mark - 个人中心模块
+
+/**
+ * 获取用户信息
+ */
++(void)postUserInfo:(NSMutableDictionary *_Nullable) params loading:(NSString *_Nullable)text success:(void (^_Nullable)(ApiResultData * _Nullable data))success  failure:(void (^_Nullable)(ApiResultData * _Nullable data))failure{
+    [[HttpUtility sharedInstance] POST:UserInfo loadingText:text parameters:params progress:nil success:^(ApiResultData * _Nullable data) {
+        success(data);
+    } failure:^(ApiResultData * _Nullable data) {
+        failure(data);
+    }];
+}
+
+/**
+ * 更新用户信息
+ */
++(void)postUpdateUserInfo:(NSMutableDictionary *_Nullable) params loading:(NSString *_Nullable)text success:(void (^_Nullable)(ApiResultData * _Nullable data))success  failure:(void (^_Nullable)(ApiResultData * _Nullable data))failure{
+    [[HttpUtility sharedInstance] POST:UpdateUserInfo loadingText:text parameters:params progress:nil success:^(ApiResultData * _Nullable data) {
+        success(data);
+    } failure:^(ApiResultData * _Nullable data) {
+        failure(data);
+    }];
+}
+
+/**
+ * 上传图片资源
+ */
++(void)uploadImageResource:(NSMutableDictionary *_Nullable) params files:(NSArray *_Nullable)files success:(void (^_Nullable)(ApiResultData * _Nullable data))success  failure:(void (^_Nullable)(ApiResultData * _Nullable data))failure{
+    
+    [[HttpUtility sharedInstance] uploadImage:HomeResource parameters:params files:files progress:nil success:^(ApiResultData * _Nullable data) {
+         success(data);
+    } failure:^(ApiResultData * _Nullable data) {
+        failure(data);
+    }];
+}
+
 /**
  * 反馈
  */
@@ -28,6 +63,82 @@
     }];
 }
 
+/**
+ * 实名认证
+ */
++(void)postCertification:(NSMutableDictionary *_Nullable) params loading:(NSString *_Nullable)text success:(void (^_Nullable)(ApiResultData * _Nullable data))success  failure:(void (^_Nullable)(ApiResultData * _Nullable data))failure{
+    [[HttpUtility sharedInstance] POST:Certification loadingText:text parameters:params progress:nil success:^(ApiResultData * _Nullable data) {
+        success(data);
+    } failure:^(ApiResultData * _Nullable data) {
+        failure(data);
+    }];
+}
+
+/**
+ * 余额信息
+ */
++(void)postWalletWalletMoney:(NSMutableDictionary *_Nullable) params loading:(NSString *_Nullable)text success:(void (^_Nullable)(ApiResultData * _Nullable data))success  failure:(void (^_Nullable)(ApiResultData * _Nullable data))failure{
+    [[HttpUtility sharedInstance] POST:WalletWalletMoney loadingText:text parameters:params progress:nil success:^(ApiResultData * _Nullable data) {
+        success(data);
+    } failure:^(ApiResultData * _Nullable data) {
+        failure(data);
+    }];
+}
+
+/**
+ * 钱包账单
+ */
++(void)postWalletWalletMoneyLog:(NSMutableDictionary *_Nullable) params loading:(NSString *_Nullable)text success:(void (^_Nullable)(ApiResultData * _Nullable data))success  failure:(void (^_Nullable)(ApiResultData * _Nullable data))failure{
+    [[HttpUtility sharedInstance] POST:WalletWalletMoneyLog loadingText:text parameters:params progress:nil success:^(ApiResultData * _Nullable data) {
+        success(data);
+    } failure:^(ApiResultData * _Nullable data) {
+        failure(data);
+    }];
+}
+
+/**
+ * 添加银行卡
+ */
++(void)postWalletAddBankCard:(NSMutableDictionary *_Nullable) params loading:(NSString *_Nullable)text success:(void (^_Nullable)(ApiResultData * _Nullable data))success  failure:(void (^_Nullable)(ApiResultData * _Nullable data))failure{
+    [[HttpUtility sharedInstance] POST:WalletAddBankCard loadingText:text parameters:params progress:nil success:^(ApiResultData * _Nullable data) {
+        success(data);
+    } failure:^(ApiResultData * _Nullable data) {
+        failure(data);
+    }];
+}
+
+/**
+ * 获取银行卡类型
+ */
++(void)postWalletGetCardType:(NSMutableDictionary *_Nullable) params loading:(NSString *_Nullable)text success:(void (^_Nullable)(ApiResultData * _Nullable data))success  failure:(void (^_Nullable)(ApiResultData * _Nullable data))failure{
+    [[HttpUtility sharedInstance] POST:WalletGetCardType loadingText:text parameters:params progress:nil success:^(ApiResultData * _Nullable data) {
+        success(data);
+    } failure:^(ApiResultData * _Nullable data) {
+        failure(data);
+    }];
+}
+
+/**
+ * 获取银行卡列表
+ */
++(void)postWalletBankCard:(NSMutableDictionary *_Nullable) params loading:(NSString *_Nullable)text success:(void (^_Nullable)(ApiResultData * _Nullable data))success  failure:(void (^_Nullable)(ApiResultData * _Nullable data))failure{
+    [[HttpUtility sharedInstance] POST:WalletBankCard loadingText:text parameters:params progress:nil success:^(ApiResultData * _Nullable data) {
+        success(data);
+    } failure:^(ApiResultData * _Nullable data) {
+        failure(data);
+    }];
+}
+
+/**
+ * 提现
+ */
++(void)postWalletWithdrawals:(NSMutableDictionary *_Nullable) params loading:(NSString *_Nullable)text success:(void (^_Nullable)(ApiResultData * _Nullable data))success  failure:(void (^_Nullable)(ApiResultData * _Nullable data))failure{
+    [[HttpUtility sharedInstance] POST:WalletWithdrawals loadingText:text parameters:params progress:nil success:^(ApiResultData * _Nullable data) {
+        success(data);
+    } failure:^(ApiResultData * _Nullable data) {
+        failure(data);
+    }];
+}
 #pragma mark - ****************************注册登录*************************
 /**
  * 登录

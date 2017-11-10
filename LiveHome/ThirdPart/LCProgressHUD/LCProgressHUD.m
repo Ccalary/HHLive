@@ -53,10 +53,14 @@
     [hud setMinSize:CGSizeMake(BGVIEW_WIDTH, BGVIEW_WIDTH)];
     if (inKey){
         [[UIApplication sharedApplication].keyWindow addSubview:hud];
+        hud.center = [UIApplication sharedApplication].keyWindow.center;
     }else{
         [[self currentView] addSubview:hud];//添加到当前View
+        
+        //因为全局的ViewController中的View都下沉
         CGFloat offsetHeight = -([UIApplication sharedApplication].statusBarFrame.size.height + 44.0);
-        hud.offset = CGPointMake(0, offsetHeight);//偏移顶部高度
+        //偏移顶部高度
+        hud.center = CGPointMake([self currentView].center.x, [self currentView].center.y + offsetHeight);
     }
     
     NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"LCProgressHUD" ofType:@"bundle"];
@@ -127,11 +131,14 @@
     [hud setRemoveFromSuperViewOnHide:YES];
     if (inKey){
         [[UIApplication sharedApplication].keyWindow addSubview:hud];
+        hud.center = [UIApplication sharedApplication].keyWindow.center;
     }else{
         [[self currentView] addSubview:hud];//添加到当前View
+        
         //因为全局的ViewController中的View都下沉
         CGFloat offsetHeight = -([UIApplication sharedApplication].statusBarFrame.size.height + 44.0);
-        hud.offset = CGPointMake(0, offsetHeight);
+        //偏移顶部高度
+        hud.center = CGPointMake([self currentView].center.x, [self currentView].center.y + offsetHeight);
     }
 
     [hud hideAnimated:YES afterDelay:kToastDuration];
@@ -191,6 +198,4 @@
     }
     return controller.view;
 }
-
-
 @end

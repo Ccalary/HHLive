@@ -63,7 +63,7 @@
 }
 
 - (void)setTotalMoney:(NSString *)totalMoney{
-    NSString *str = [NSString stringWithFormat:@"当前可提现%@元",totalMoney];
+    NSString *str = [NSString stringWithFormat:@"当前可提现%.2f元",[totalMoney doubleValue]];
     self.moneyLabel.attributedText = [ToolsHelper changeSomeText:totalMoney
                                                           inText:str
                                                        withColor:[UIColor themeColor]];

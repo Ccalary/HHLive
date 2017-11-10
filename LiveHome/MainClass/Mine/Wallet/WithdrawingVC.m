@@ -8,6 +8,8 @@
 
 #import "WithdrawingVC.h"
 #import "BillViewController.h"
+#import "UINavigationController+FDFullscreenPopGesture.h"
+#import "WalletViewController.h"
 
 @interface WithdrawingVC ()
 @property (nonatomic, strong) UILabel *moneyLabel;
@@ -22,12 +24,20 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-   
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //单个viewController 关闭侧滑手势
+    self.fd_interactivePopDisabled = YES;
 }
 
 - (void)initView{
     self.navigationItem.title = @"提现";
     self.view.backgroundColor = [UIColor bgColorMain];
+    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_back"] style:UIBarButtonItemStylePlain target:self action:@selector(leftBarButtonItemAction)];
+    self.navigationItem.leftBarButtonItem = leftItem;
     
     UIImageView *iconImageView = [[UIImageView alloc] init];
     iconImageView.image = [UIImage imageNamed:@"mine_check_90"];
@@ -51,7 +61,7 @@
     _moneyLabel = [[UILabel alloc] init];
     _moneyLabel.font = FONT_SYSTEM(24);
     _moneyLabel.textColor = [UIColor themeColor];
-    _moneyLabel.text = @"¥10";
+    _moneyLabel.text = [NSString stringWithFormat:@"¥%@",self.withdrawMoney];
     [self.view addSubview:_moneyLabel];
     [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
@@ -96,9 +106,25 @@
     }];
 }
 
+
 //Action
 - (void)knowBtnAction{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self popViewController];
+}
+
+- (void)leftBarButtonItemAction{
+    [self popViewController];
+}
+
+//后退两个
+- (void)popViewController{
+    
+    for (int i = 0; i < (int)self.navigationController.viewControllers.count; i++){
+        if ([self.navigationController.viewControllers[i] isKindOfClass:[WalletViewController class]]){
+            [self.navigationController popToViewController:self.navigationController.viewControllers[i] animated:YES];
+            break;
+        }
+    }
 }
 
 //提现记录

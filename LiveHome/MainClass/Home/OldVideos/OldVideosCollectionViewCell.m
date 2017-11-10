@@ -24,6 +24,7 @@
     self.contentView.backgroundColor = [UIColor whiteColor];
     
     _videoImageView = [[UIImageView alloc] init];
+    _videoImageView.image = [UIImage imageNamed:@"video_default_180x95"];
     [self.contentView addSubview:_videoImageView];
     [_videoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView);

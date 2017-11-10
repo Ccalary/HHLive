@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface WithdrawingVC : UIViewController
-
+@property (nonatomic, strong) NSString *withdrawMoney; //提现金额
 @end

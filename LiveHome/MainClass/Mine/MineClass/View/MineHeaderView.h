@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserInfoModel.h"
+
 @protocol MineHeaderViewDelegate<NSObject>
 - (void)mineHeaderViewBtnAction;
 @end
 
 @interface MineHeaderView : UIView
 @property (nonatomic, weak) id<MineHeaderViewDelegate> delegate;
+
+@property (nonatomic, strong) UserInfoModel *model;
 @end

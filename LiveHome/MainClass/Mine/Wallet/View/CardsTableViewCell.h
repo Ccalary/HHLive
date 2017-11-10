@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WalletMoneyModel.h"
 
 @interface CardsTableViewCell : UITableViewCell
 @property (nonatomic, strong) UIView *dividerLine;
+
+- (void)setModel:(WalletMoneyModel *)model withSelectModel:(WalletMoneyModel *)selectModel;
 @end

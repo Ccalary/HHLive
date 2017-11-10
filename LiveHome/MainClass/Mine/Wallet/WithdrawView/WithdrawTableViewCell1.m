@@ -7,10 +7,12 @@
 //
 
 #import "WithdrawTableViewCell1.h"
+#import "UIImageView+WebCache.h"
+
 @interface WithdrawTableViewCell1()
 @property (nonatomic, strong) UIImageView *bankImageView;
 @property (nonatomic, strong) UILabel *nameLabel, *numLabel;
-@property (nonatomic, strong) UIView *noCardView;
+
 @end
 
 @implementation WithdrawTableViewCell1
@@ -26,7 +28,7 @@
     self.contentView.backgroundColor = [UIColor whiteColor];
     
     _bankImageView = [[UIImageView alloc] init];
-    _bankImageView.image = [UIImage imageNamed:@"tab_me"];
+    _bankImageView.image = [UIImage imageNamed:@"card_default_32"];
     [self.contentView addSubview:_bankImageView];
     [_bankImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.mas_equalTo(34*UIRate);
@@ -37,7 +39,7 @@
     _nameLabel = [[UILabel alloc] init];
     _nameLabel.font = FONT_SYSTEM(15);
     _nameLabel.textColor = [UIColor fontColorBlack];
-    _nameLabel.text = @"招商银行";
+    _nameLabel.text = @"银行";
     [self.contentView addSubview:_nameLabel];
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_bankImageView.mas_right).offset(15*UIRate);
@@ -47,7 +49,7 @@
     _numLabel = [[UILabel alloc] init];
     _numLabel.font = FONT_SYSTEM(12);
     _numLabel.textColor = [UIColor fontColorLightGray];
-    _numLabel.text = @"尾号5077储蓄卡";
+    _numLabel.text = @"";
     [self.contentView addSubview:_numLabel];
     [_numLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_nameLabel);
@@ -68,7 +70,7 @@
 - (void)initNoCardView{
     _noCardView = [[UIView alloc] init];
     _noCardView.backgroundColor = [UIColor whiteColor];
-//    _noCardView.hidden = YES;
+    _noCardView.hidden = YES;
     [self.contentView addSubview:_noCardView];
     [_noCardView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.contentView);
@@ -93,5 +95,12 @@
         make.right.equalTo(tipsLabel.mas_left).offset(-3*UIRate);
         make.centerY.equalTo(_noCardView);
     }];
+}
+
+- (void)setModel:(WalletMoneyModel *)model{
+    _model = model;
+    [_bankImageView sd_setImageWithURL:[NSURL URLWithString:model.image] placeholderImage:[UIImage imageNamed:@"card_default_32"]];
+    _nameLabel.text = model.title ?: @"";
+    _numLabel.text = model.content ?: @"";
 }
 @end

@@ -10,22 +10,30 @@
 #import "BillViewController.h"
 #import "WithdrawViewController.h"
 #import "WithdrawingVC.h"
+#import "LHConnect.h"
+#import "WalletMoneyModel.h"
+#import "PublicModel_Dict.h"
+
 
 @interface WalletViewController ()
 @property (nonatomic, strong) UILabel *moneyLabel;
+@property (nonatomic, strong) WalletMoneyModel *model;
 @end
 
 @implementation WalletViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self initView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self requestData];
 }
 
 - (void)initView{
@@ -123,8 +131,20 @@
 
 //提现
 - (void)withdrawBtnAction{
-    [self.navigationController pushViewController:[[WithdrawingVC alloc] init] animated:YES];
-    
-//    [self.navigationController pushViewController:[[WithdrawViewController alloc] init] animated:YES];
+    WithdrawViewController *vc = [[WithdrawViewController alloc] init];
+    vc.moneyModel = self.model;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - 网络请求
+- (void)requestData{
+    [LHConnect postWalletWalletMoney:nil loading:@"加载中..." success:^(ApiResultData * _Nullable data) {
+        PublicModel_Dict *pDic = [PublicModel_Dict mj_objectWithKeyValues:data];
+        _model = [WalletMoneyModel mj_objectWithKeyValues:pDic.data];
+        _moneyLabel.text = _model.money ?: @"0.00";
+        
+    } failure:^(ApiResultData * _Nullable data) {
+        
+    }];
 }
 @end

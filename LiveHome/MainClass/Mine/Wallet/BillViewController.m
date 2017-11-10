@@ -9,17 +9,22 @@
 
 #import "BillViewController.h"
 #import "BillTableViewCell.h"
+#import "LHConnect.h"
+#import "PublicModel_Dict.h"
+#import "WalletBillModel.h"
 
 @interface BillViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
-
+@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, assign) int page; //页码
 @end
 
 @implementation BillViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    self.dataArray = [NSMutableArray array];
+    self.page = 1;
     [self initView];
 }
 
@@ -42,16 +47,20 @@
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
-    
+    __weak typeof (self) weakSelf = self;
     //下拉刷新
     _tableView.mj_header = [HHRefreshNormalHeader headerWithRefreshingBlock:^{
-        
+        weakSelf.page = 1;
+        [weakSelf requestData];
     }];
     
     //上拉加载
     _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        
+        weakSelf.page ++;
+        [weakSelf requestData];
     }];
+    
+    [_tableView.mj_header beginRefreshing];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -59,7 +68,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 8;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -76,5 +85,31 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return 60*UIRate;
+}
+
+#pragma mark - 网络请求
+- (void)requestData{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:@(self.page) forKey:@"page"];
+    [params setValue:@(10) forKey:@"size"];
+    [LHConnect postWalletWalletMoneyLog:params loading:@"" success:^(ApiResultData * _Nullable data) {
+        if (self.page == 1){
+            [self.dataArray removeAllObjects];
+        }
+        PublicModel_Dict *pDict = [PublicModel_Dict mj_objectWithKeyValues:data];
+        NSArray *array = [WalletBillModel mj_objectArrayWithKeyValuesArray:[pDict.data objectForKey:@"rows"]];
+        [self.dataArray addObjectsFromArray:array];
+        [self.tableView reloadData];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        if (array.count < 10){
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }
+        
+    } failure:^(ApiResultData * _Nullable data) {
+        
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+    }];
 }
 @end

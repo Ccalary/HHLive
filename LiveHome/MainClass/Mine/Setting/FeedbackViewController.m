@@ -162,6 +162,7 @@
     [params setValue:self.connectText.text forKey:@"contact"];
     [LHConnect postFeedback:params loading:@"提交中..." success:^(ApiResultData * _Nullable data) {
         [LCProgressHUD showSuccess:@"反馈成功"];
+        //延时
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8* NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.navigationController popViewControllerAnimated:YES];
         });

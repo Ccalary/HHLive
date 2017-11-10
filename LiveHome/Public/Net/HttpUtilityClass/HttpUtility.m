@@ -178,7 +178,7 @@ static inline NSPUIImageType NSPUIImageTypeFromData(NSData *imageData)
     NSDate *now = [NSDate date];
     NSDictionary *params = [self getSignParams:parameters withTime:now];
     params = [self getEncryptParams:params withTime:now];
-    [self dataTaskWithHTTPMethod:wk_GET URLString:URLString parameters:params date:now progress:downloadProgress success:success failure:failure];
+    [self dataTaskWithHTTPMethod:wk_GET loadingText:text URLString:URLString parameters:params date:now progress:downloadProgress success:success failure:failure];
 }
 
 
@@ -199,7 +199,7 @@ static inline NSPUIImageType NSPUIImageTypeFromData(NSData *imageData)
     NSDate *now = [NSDate date];
     NSDictionary *params = [self getSignParams:parameters withTime:now];
     params = [self getEncryptParams:params withTime:now];
-    [self dataTaskWithHTTPMethod:wk_POST URLString:URLString parameters:params date:now progress:uploadProgress success:success failure:failure];
+    [self dataTaskWithHTTPMethod:wk_POST loadingText:text URLString:URLString parameters:params date:now progress:uploadProgress success:success failure:failure];
 }
 
 #pragma mark - uploadfile
@@ -410,20 +410,19 @@ static inline NSPUIImageType NSPUIImageTypeFromData(NSData *imageData)
     [manager.requestSerializer setValue:diviceID forHTTPHeaderField:@"wk-user-device"];
     [manager.requestSerializer setValue:@"" forHTTPHeaderField:@"Cookie"];
     
+    NSString *auth = [UserHelper getMemberAuth];
+    NSString *userId = [UserHelper getMemberId];
     
-    NSDictionary * dict = [[NSUserDefaults standardUserDefaults] objectForKey:kLoginSuccessDict];
-    
-    if(dict != nil && [dict objectForKey:@"userid"] != nil)
+    if(auth && userId)
     {
-        [manager.requestSerializer setValue:[dict objectForKey:@"userid"] forHTTPHeaderField:@"wk-user-id"];
-        [manager.requestSerializer setValue:[dict objectForKey:@"auth"] forHTTPHeaderField:@"wk-user-auth"];        
+        [manager.requestSerializer setValue:userId forHTTPHeaderField:@"wk-user-id"];
+        [manager.requestSerializer setValue:auth forHTTPHeaderField:@"wk-user-auth"];
     }
-    
-    
     return manager;
 }
 
 - (NSURLSessionDataTask *)dataTaskWithHTTPMethod:(APIMethod)method
+                                     loadingText:(NSString *)text
                                        URLString:(NSString *)URLString
                                       parameters:(id)parameters
                                             date:(NSDate *)now
@@ -523,9 +522,20 @@ static inline NSPUIImageType NSPUIImageTypeFromData(NSData *imageData)
                 {
                     //增加显示
                     if(data.code == 300){
-                       [LCProgressHUD showFailure:data.message];
+                        
+                        if (text.length > 0) {
+                             [LCProgressHUD showFailure:data.message];
+                        }else {
+                             [LCProgressHUD showKeyWindowFailure:data.message];
+                        }
+    
                     }else {
-                        [LCProgressHUD showFailure:@"请求失败，请稍后再试"];
+                        
+                        if (text.length > 0) {
+                           [LCProgressHUD showFailure:@"请求失败，请稍后再试"];
+                        }else {
+                            [LCProgressHUD showKeyWindowFailure:@"请求失败，请稍后再试"];
+                        }
                     }
                     failure(data);
                 }
